@@ -1,0 +1,46 @@
+- name: update homebrew itself
+  homebrew:
+    update_homebrew: true
+
+- name: install brew packages
+  homebrew:
+    state: latest
+    name:
+      - awscli
+      - cloudflared
+      - corepack
+      - deno
+      - eza
+      - fish
+      - fzf
+      - gh
+      - ghq
+      - git
+      - git-lfs
+      - go
+      - hub
+      - imagemagick
+      - jq
+      - lazygit
+      - libpq
+      - make
+      - mas
+      - mtr
+      - mysql-client
+      - neovim
+      - node
+      - p7zip
+      - ripgrep
+      - ruby
+      - tig
+      - tmux
+      - wget
+
+- name: link brew packages
+  homebrew:
+    state: linked
+    install_options:
+      - force
+    name:
+      - libpq
+      - mysql-client

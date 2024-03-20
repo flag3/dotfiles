@@ -1,0 +1,35 @@
+- hosts: localhost
+  connection: local
+
+  tasks:
+    - import_tasks: defaults.yml
+      tags:
+        - defaults
+    - import_tasks: file.yml
+      tags:
+        - file
+    - import_tasks: fish.yml
+      tags:
+        - fish
+
+    - import_tasks: brew.yml
+      tags:
+        - brew
+    - import_tasks: cask.yml
+      tags:
+        - cask
+    - import_tasks: gcloud.yml
+      tags:
+        - gcloud
+    - import_tasks: go.yml
+      tags:
+        - go
+    - import_tasks: mas.yml
+      tags:
+        - mas
+    - import_tasks: npm.yml
+      tags:
+        - npm
+    - import_tasks: pip.yml
+      tags:
+        - pip

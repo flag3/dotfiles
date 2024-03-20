@@ -1,0 +1,46 @@
+- name: configure NSGlobalDomain
+  osx_defaults:
+    key: "{{ item.key }}"
+    type: "{{ item.type }}"
+    value: "{{ item.value }}"
+  loop:
+    - key: KeyRepeat
+      type: float
+      value: 2
+    - key: InitialKeyRepeat
+      type: float
+      value: 25
+
+- name: configure com.apple.dock
+  osx_defaults:
+    domain: com.apple.dock
+    key: "{{ item.key }}"
+    type: "{{ item.type }}"
+    value: "{{ item.value }}"
+  loop:
+    - key: show-recents
+      type: bool
+      value: false
+    - key: recent-apps
+      type: array
+      value: []
+    - key: autohide
+      type: bool
+      value: true
+    - key: mru-spaces
+      type: bool
+      value: false
+
+- name: configure com.apple.desktopservices
+  osx_defaults:
+    domain: com.apple.dock
+    key: "{{ item.key }}"
+    type: "{{ item.type }}"
+    value: "{{ item.value }}"
+  loop:
+    - key: DSDontWriteUSBStores
+      type: bool
+      value: true
+    - key: DSDontWriteNetworkStores
+      type: bool
+      value: true

@@ -1,0 +1,24 @@
+- name: install brew cask packages
+  homebrew_cask:
+    state: latest
+    name:
+      - 1password
+      - android-studio
+      - aquaskk
+      - docker
+      - font-plemol-jp-nf
+      - google-chrome
+      - google-cloud-sdk
+      - google-drive
+      - iterm2
+      - karabiner-elements
+      - keycastr
+      - mactex
+      - min
+      - numi
+      - raycast
+      - skim
+      - tableplus
+      - visual-studio-code
+      - zoom
+      - zotero

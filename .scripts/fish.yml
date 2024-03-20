@@ -1,0 +1,21 @@
+- name: install fish plugins
+  command: sh {{ playbook_dir }}/library/fisher_install.sh "{{ item }}"
+  loop:
+    - jorgebucaran/fisher
+    - jethrokuan/z
+    - IlanCosman/tide
+    - edc/bass
+    - danhper/fish-ssh-agent
+    - jorgebucaran/nvm.fish
+    - PatrickF1/fzf.fish
+
+- name: create iCloud directory
+  file:
+    state: directory
+    path: ~/Library/Mobile Documents/com~apple~CloudDocs/fish
+
+- name: link data dir
+  file:
+    state: link
+    src: ~/Library/Mobile Documents/com~apple~CloudDocs/fish
+    dest: ~/.local/share/fish
