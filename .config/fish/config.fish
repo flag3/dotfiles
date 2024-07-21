@@ -1,13 +1,7 @@
+set fish_greeting ""
+
 set HOMEBREW_PREFIX /opt/homebrew
 fish_add_path -g "$HOMEBREW_PREFIX/bin" "$HOMEBREW_PREFIX/sbin"
-
-function ide
-    tmux split-window -v -l 30%
-    tmux split-window -h -l 66%
-    tmux split-window -h -l 50%
-end
-
-set fish_greeting ""
 
 set -gx TERM xterm-256color
 
@@ -32,12 +26,30 @@ set -gx PATH bin $PATH
 set -gx PATH ~/bin $PATH
 set -gx PATH ~/.local/bin $PATH
 
-# NodeJS
-set -gx PATH node_modules/.bin $PATH
+# go
+if [ -x (command -v go) ]
+    set -gx GOPATH "$HOME/.go"
+    fish_add_path -g "$GOPATH/bin"
+end
 
-# Go
-set -g GOPATH $HOME/go
-set -gx PATH $GOPATH/bin $PATH
+# npm
+set NPM_PATH "$HOME/.npm/bin"
+if [ -d $NPM_PATH ]
+    fish_add_path -g $NPM_PATH
+end
+
+# python
+set PYTHON_INCLUDE "$HOME/.venv/bin/activate.fish"
+if [ -r $PYTHON_INCLUDE ]
+    set VIRTUAL_ENV_DISABLE_PROMPT true
+    source $PYTHON_INCLUDE
+end
+
+# aqua
+if [ -x (command -v aqua) ]
+    fish_add_path -g (aqua root-dir)/bin
+    set -gx AQUA_GLOBAL_CONFIG $HOME/.config/aquaproj-aqua/aqua.yaml
+end
 
 if type -q eza
     alias ll "eza -l -g --icons"
@@ -47,3 +59,9 @@ end
 # Fzf
 set -g FZF_PREVIEW_FILE_CMD "bat --style=numbers --color=always --line-range :500"
 set -g FZF_LEGACY_KEYBINDINGS 0
+
+function ide
+    tmux split-window -v -l 30%
+    tmux split-window -h -l 66%
+    tmux split-window -h -l 50%
+end

@@ -11,19 +11,18 @@
     - import_tasks: fish.yml
       tags:
         - fish
-
     - import_tasks: brew.yml
       tags:
         - brew
     - import_tasks: cask.yml
       tags:
         - cask
+    - import_tasks: aquaproj-aqua.yml
+      tags:
+        - aqua
     - import_tasks: gcloud.yml
       tags:
         - gcloud
-    - import_tasks: go.yml
-      tags:
-        - go
     - import_tasks: mas.yml
       tags:
         - mas

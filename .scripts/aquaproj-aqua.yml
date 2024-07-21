@@ -1,0 +1,6 @@
+- name: link aqua packages
+  command: aqua i -l
+  args:
+    chdir: ~/.config/aquaproj-aqua
+  register: result
+  changed_when: result.stderr_lines | length > 0

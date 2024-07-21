@@ -4,8 +4,10 @@
     path: ~/{{ item }}
     mode: 0700
   loop:
+    - .config/aquaproj-aqua
     - .config/fish/conf.d
     - .config/fish/functions
+    - .config/karabiner/assets
     - .config/nvim
     - .local/share
 
@@ -25,6 +27,8 @@
       dest: .latexmkrc
     - src: .zshrc
       dest: .zshrc
+    - src: .config/aquaproj-aqua/aqua.yaml
+      dest: .config/aquaproj-aqua/aqua.yaml
     - src: .config/hub
       dest: .config/hub
     - src: .config/fish/config.fish
@@ -35,6 +39,8 @@
       dest: .config/fish/functions/fish_user_key_bindings.fish
     - src: .config/fish/functions/fzf_change_directory.fish
       dest: .config/fish/functions/fzf_change_directory.fish
+    - src: .config/karabiner
+      dest: .config/karabiner/assets/complex_modifications
     - src: .config/nvim/init.lua
       dest: .config/nvim/init.lua
     - src: .config/nvim/lua

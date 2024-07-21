@@ -2,12 +2,18 @@
   homebrew:
     update_homebrew: true
 
+- name: brew tap
+  homebrew_tap:
+    name:
+      - aquaproj/aqua
+      - beeftornado/rmtree
+
 - name: install brew packages
   homebrew:
     state: latest
     name:
-      - awscli
-      - cloudflared
+      - aquaproj/aqua/aqua
+      - beeftornado/rmtree/brew-rmtree
       - corepack
       - deno
       - eza
@@ -16,11 +22,8 @@
       - gh
       - ghq
       - git
-      - git-lfs
-      - go
       - hub
       - imagemagick
-      - jq
       - lazygit
       - libpq
       - make
@@ -28,7 +31,6 @@
       - mtr
       - mysql-client
       - neovim
-      - node
       - p7zip
       - ripgrep
       - ruby
