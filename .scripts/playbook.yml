@@ -23,6 +23,9 @@
     - import_tasks: gcloud.yml
       tags:
         - gcloud
+    - import_tasks: lean.yml
+      tags:
+        - lean
     - import_tasks: mas.yml
       tags:
         - mas

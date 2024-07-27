@@ -1,0 +1,4 @@
+- name: Lean Installation
+  shell: curl https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf | sh -s -- -y --no-modify-path
+  args:
+    executable: /bin/bash
