@@ -24,6 +24,7 @@
       - git
       - hub
       - imagemagick
+      - latexindent
       - lazygit
       - libpq
       - make
