@@ -116,7 +116,9 @@ return {
 					vim.fn["skkeleton#config"]({
 						globalDictionaries = {
 							"~/Library/Application Support/AquaSKK/SKK-JISYO.L",
+							"~/dotfiles/SKK-JISYO.latex.utf8",
 						},
+						showCandidatesCount = 1,
 					})
 				end,
 			},
