@@ -22,4 +22,5 @@ if [ ! -x "$(command -v ansible)" ]; then
   pip install ansible
 fi
 
+export PATH="$HOMEBREW_PREFIX/bin:$PATH"
 ansible-playbook playbook.yml "$@"

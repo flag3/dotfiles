@@ -1,0 +1,9 @@
+- name: check rosetta installation
+  stat:
+    path: /Library/Apple/usr/libexec/oah/libRosettaRuntime
+  register: rosetta
+
+- name: install rosetta
+  become: true
+  command: softwareupdate --install-rosetta --agree-to-license
+  when: not rosetta.stat.exists

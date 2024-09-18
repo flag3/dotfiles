@@ -3,4 +3,4 @@
     state: latest
     id: "{{ item }}"
   loop:
-    - 1444383602 # GoodNotes 5
+    - 1444383602 # GoodNotes

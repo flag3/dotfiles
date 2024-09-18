@@ -1,4 +1,10 @@
-- name: Lean Installation
+- name: check lean installation
+  stat:
+    path: "~/.elan/bin/elan"
+  register: lean
+
+- name: install lean
   shell: curl https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf | sh -s -- -y --no-modify-path
   args:
     executable: /bin/bash
+  when: not lean.stat.exists
