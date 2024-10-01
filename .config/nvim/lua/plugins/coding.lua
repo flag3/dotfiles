@@ -115,17 +115,40 @@ return {
 				config = function()
 					vim.fn["skkeleton#config"]({
 						globalDictionaries = {
+							"~/Library/Application Support/AquaSKK/skk-jisyo.utf8",
 							"~/Library/Application Support/AquaSKK/SKK-JISYO.L",
 							"~/dotfiles/SKK-JISYO.latex.utf8",
 						},
 						showCandidatesCount = 1,
+					})
+					vim.api.nvim_create_autocmd("FileType", {
+						pattern = "tex",
+						callback = function()
+							vim.fn["skkeleton#register_kanatable"]("rom", {
+								[","] = { "，", "" },
+								["."] = { "．", "" },
+							})
+						end,
 					})
 				end,
 			},
 			{
 				"delphinus/skkeleton_indicator.nvim",
 				config = function()
-					require("skkeleton_indicator").setup()
+					vim.api.nvim_set_hl(0, "SkkeletonIndicatorEiji", { fg = "#ffffff", bg = "#9b9b9b", bold = true })
+					vim.api.nvim_set_hl(0, "SkkeletonIndicatorHira", { fg = "#ffffff", bg = "#ff7d00", bold = true })
+					vim.api.nvim_set_hl(0, "SkkeletonIndicatorKata", { fg = "#ffffff", bg = "#78a741", bold = true })
+					vim.api.nvim_set_hl(0, "SkkeletonIndicatorHankata", { fg = "#ffffff", bg = "#ab7fd5", bold = true })
+					vim.api.nvim_set_hl(0, "SkkeletonIndicatorZenkaku", { fg = "#ffffff", bg = "#ffd401", bold = true })
+					vim.api.nvim_set_hl(0, "SkkeletonIndicatorAbbrev", { fg = "#ffffff", bg = "#9b9b9b", bold = true })
+					require("skkeleton_indicator").setup({
+						eijiText = " ＠ ",
+						hiraText = " あ ",
+						kataText = " ア ",
+						hankataText = " ｶﾅ ",
+						zenkakuText = " 英 ",
+						abbrevText = " ＠ ",
+					})
 				end,
 			},
 		},
