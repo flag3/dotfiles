@@ -8,6 +8,7 @@
     - .config/fish/conf.d
     - .config/fish/functions
     - .config/karabiner/assets
+    - Library/Application Support/lazygit
     - .config/nvim
     - .local/share
 
@@ -41,6 +42,8 @@
       dest: .config/fish/functions/fzf_change_directory.fish
     - src: .config/karabiner
       dest: .config/karabiner/assets/complex_modifications
+    - src: .config/lazygit/config.yml
+      dest: Library/Application Support/lazygit/config.yml
     - src: .config/nvim/init.lua
       dest: .config/nvim/init.lua
     - src: .config/nvim/lua
