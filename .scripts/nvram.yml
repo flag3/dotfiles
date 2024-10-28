@@ -1,0 +1,10 @@
+- name: check StartupMute
+  command: nvram StartupMute
+  register: nvram_startup_mute
+  failed_when: false
+  changed_when: false
+
+- name: configure StartupMute
+  become: true
+  command: nvram StartupMute=%01
+  when: nvram_startup_mute.rc != 0 or nvram_startup_mute.stdout is not search('%01')
