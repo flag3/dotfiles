@@ -14,6 +14,9 @@
     - import_tasks: defaults.yml
       tags:
         - defaults
+    - import_tasks: nvram.yml
+      tags:
+        - nvram
     - import_tasks: rosetta.yml
       tags:
         - rosetta
