@@ -35,6 +35,7 @@ require("lazy").setup({
 		{ import = "lazyvim.plugins.extras.ai.codeium" },
 		{ import = "lazyvim.plugins.extras.ai.copilot-chat" },
 		{ import = "lazyvim.plugins.extras.ai.copilot" },
+		{ import = "lazyvim.plugins.extras.ai.supermaven" },
 		{ import = "lazyvim.plugins.extras.ai.tabnine" },
 		-- { import = "lazyvim.plugins.extras.dap.core" },
 		-- { import = "lazyvim.plugins.extras.vscode" },

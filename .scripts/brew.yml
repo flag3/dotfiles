@@ -14,7 +14,6 @@
     name:
       - aquaproj/aqua/aqua
       - beeftornado/rmtree/brew-rmtree
-      - corepack
       - deno
       - eza
       - fish
