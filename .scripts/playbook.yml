@@ -23,27 +23,27 @@
     - import_tasks: brew.yml
       tags:
         - brew
-    - import_tasks: cask.yml
-      tags:
-        - cask
     - import_tasks: aquaproj-aqua.yml
       tags:
         - aqua
+    - import_tasks: python.yml
+      tags:
+        - python
     - import_tasks: fisher.yml
       tags:
         - fisher
+    - import_tasks: npm.yml
+      tags:
+        - npm
     - import_tasks: gcloud.yml
       tags:
         - gcloud
+    - import_tasks: cask.yml
+      tags:
+        - cask
     - import_tasks: lean.yml
       tags:
         - lean
     - import_tasks: mas.yml
       tags:
         - mas
-    - import_tasks: npm.yml
-      tags:
-        - npm
-    - import_tasks: pip.yml
-      tags:
-        - pip

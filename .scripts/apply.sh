@@ -2,25 +2,15 @@
 
 HOMEBREW_PREFIX="/opt/homebrew"
 BREW_BIN="$HOMEBREW_PREFIX/bin/brew"
-PYTHON_BIN="$HOMEBREW_PREFIX/bin/python3"
+ANSIBLE_PLAYBOOK_BIN="$HOMEBREW_PREFIX/bin/ansible-playbook"
 
 if [ ! -x $BREW_BIN ]; then
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
-if [ ! -x $PYTHON_BIN ]; then
-  $BREW_BIN install python
-fi
-
-if [ ! -r ~/.venv/bin/activate ]; then
-  $PYTHON_BIN -m venv ~/.venv
-fi
-
-. ~/.venv/bin/activate
-
-if [ ! -x "$(command -v ansible)" ]; then
-  pip install ansible
+if [ ! -x $ANSIBLE_PLAYBOOK_BIN ]; then
+  $BREW_BIN install ansible
 fi
 
 export PATH="$HOMEBREW_PREFIX/bin:$PATH"
-ansible-playbook playbook.yml "$@"
+$ANSIBLE_PLAYBOOK_BIN playbook.yml "$@"

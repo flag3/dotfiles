@@ -12,6 +12,7 @@
   homebrew:
     state: latest
     name:
+      - ansible
       - aquaproj/aqua/aqua
       - beeftornado/rmtree/brew-rmtree
       - deno
@@ -33,7 +34,6 @@
       - neovim
       - p7zip
       - ripgrep
-      - ruby
       - tig
       - tmux
       - wget

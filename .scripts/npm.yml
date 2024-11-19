@@ -10,7 +10,6 @@
     global: true
     name: "{{ item }}"
   loop:
-    - "@biomejs/biome"
     - "@trivago/prettier-plugin-sort-imports"
     - corepack
     - eas-cli

@@ -3,4 +3,5 @@
     state: latest
     id: "{{ item }}"
   loop:
-    - 1444383602 # GoodNotes
+    - 1444383602 # Goodnotes 6
+    - 1447043133 # Cursor Pro

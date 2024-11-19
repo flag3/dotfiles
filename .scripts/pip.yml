@@ -1,7 +1,0 @@
-- name: install pip packages
-  pip:
-    state: latest
-    virtualenv: ~/.venv
-    name:
-      - ansible
-      - pip
