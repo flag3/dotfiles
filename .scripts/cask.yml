@@ -6,6 +6,7 @@
       - android-studio
       - aquaskk
       - cloudflare-warp
+      - cursor
       - docker
       - font-plemol-jp-nf
       - google-chrome
@@ -19,7 +20,6 @@
       - raycast
       - skim
       - tableplus
-      - visual-studio-code
       - whisky
       - zoom
       - zotero
