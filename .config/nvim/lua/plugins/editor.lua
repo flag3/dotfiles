@@ -108,6 +108,13 @@ return {
 				desc = "Lists Function names, variables, from Treesitter",
 			},
 			{
+				";c",
+				function()
+					require("telescope").extensions.bibtex.bibtex()
+				end,
+				desc = "Lists citations from .bib file",
+			},
+			{
 				"sf",
 				function()
 					local telescope = require("telescope")
@@ -185,7 +192,7 @@ return {
 				},
 				bibtex = {
 					depth = 1,
-					global_files = { "~/Library/texmf/bibtex/bib/Zotero.bib" },
+					global_files = { "~/Zotero/better-bibtex/Zotero.bib" },
 					-- Path to global bibliographies (placed outside of the project)
 					search_keys = { "author", "year", "title" },
 					-- Define the search keys to use in the picker
