@@ -18,6 +18,7 @@
       - deno
       - eza
       - fish
+      - fd
       - fzf
       - gh
       - ghq
