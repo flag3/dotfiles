@@ -34,6 +34,7 @@
       - mysql-client
       - neovim
       - p7zip
+      - rgbds
       - ripgrep
       - tig
       - tmux
