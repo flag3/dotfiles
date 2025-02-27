@@ -7,6 +7,7 @@
     - .config/aquaproj-aqua
     - .config/fish/conf.d
     - .config/fish/functions
+    - .config/ghostty
     - .config/karabiner/assets
     - Library/Application Support/lazygit
     - .config/nvim
@@ -40,6 +41,8 @@
       dest: .config/fish/functions/fish_user_key_bindings.fish
     - src: .config/fish/functions/fzf_change_directory.fish
       dest: .config/fish/functions/fzf_change_directory.fish
+    - src: .config/ghostty/config
+      dest: .config/ghostty/config
     - src: .config/karabiner
       dest: .config/karabiner/assets/complex_modifications
     - src: .config/lazygit/config.yml
