@@ -47,3 +47,6 @@
     - import_tasks: mas.yml
       tags:
         - mas
+    - import_tasks: tmux.yml
+      tags:
+        - tmux

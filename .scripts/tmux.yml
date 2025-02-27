@@ -1,0 +1,9 @@
+- name: install tmux plugins
+  git:
+    repo: "git@github.com:{{ item }}"
+    dest: "{{ playbook_dir }}/../.config/tmux/plugins/{{ item | basename }}"
+  loop:
+    - tmux-plugins/tpm
+    - tmux-plugins/tmux-pain-control
+  register: result
+  changed_when: result.before != result.after
