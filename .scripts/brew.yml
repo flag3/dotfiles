@@ -37,6 +37,7 @@
       - rgbds
       - ripgrep
       - rust
+      - rust-analyzer
       - tig
       - tmux
       - wget
