@@ -110,6 +110,14 @@ return {
 			{
 				";c",
 				function()
+					local builtin = require("telescope.builtin")
+					builtin.lsp_incoming_calls()
+				end,
+				desc = "Lists LSP incoming calls for word under the cursor",
+			},
+			{
+				";b",
+				function()
 					require("telescope").extensions.bibtex.bibtex()
 				end,
 				desc = "Lists citations from .bib file",
