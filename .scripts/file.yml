@@ -27,6 +27,8 @@
       dest: .gitignore
     - src: .latexmkrc
       dest: .latexmkrc
+    - src: .npmrc
+      dest: .npmrc
     - src: .zshrc
       dest: .zshrc
     - src: .config/aquaproj-aqua/aqua.yaml
