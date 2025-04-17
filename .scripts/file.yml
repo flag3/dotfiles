@@ -4,6 +4,7 @@
     path: ~/{{ item }}
     mode: 0700
   loop:
+    - .ssh
     - .config/aquaproj-aqua
     - .config/fish/conf.d
     - .config/fish/functions
@@ -21,16 +22,18 @@
     force: true
     follow: false
   loop:
+    - src: .zshrc
+      dest: .zshrc
+    - src: .npmrc
+      dest: .npmrc
     - src: .gitconfig
       dest: .gitconfig
     - src: .gitignore
       dest: .gitignore
     - src: .latexmkrc
       dest: .latexmkrc
-    - src: .npmrc
-      dest: .npmrc
-    - src: .zshrc
-      dest: .zshrc
+    - src: .ssh.config
+      dest: .ssh/config
     - src: .config/aquaproj-aqua/aqua.yaml
       dest: .config/aquaproj-aqua/aqua.yaml
     - src: .config/hub

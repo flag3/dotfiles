@@ -15,6 +15,7 @@
       - ansible
       - aquaproj/aqua/aqua
       - beeftornado/rmtree/brew-rmtree
+      - cocoapods
       - deno
       - eza
       - fish

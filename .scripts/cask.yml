@@ -8,6 +8,7 @@
       - cloudflare-warp
       - cursor
       - docker
+      - flutter
       - font-plemol-jp-nf
       - ghostty
       - google-chrome
@@ -16,6 +17,7 @@
       - karabiner-elements
       - keycastr
       - mactex
+      - microsoft-office
       - numi
       - raycast
       - skim
