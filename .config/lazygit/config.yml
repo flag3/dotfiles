@@ -5,3 +5,5 @@ customCommands:
     context: "files"
     loadingText: "opening git-cz commit tool"
     subprocess: true
+gui:
+  mouseEvents: false
