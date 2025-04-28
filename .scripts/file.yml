@@ -22,6 +22,8 @@
     force: true
     follow: false
   loop:
+    - src: .czrc
+      dest: .czrc
     - src: .zshrc
       dest: .zshrc
     - src: .npmrc
@@ -32,7 +34,7 @@
       dest: .gitignore
     - src: .latexmkrc
       dest: .latexmkrc
-    - src: .ssh.config
+    - src: .ssh/config
       dest: .ssh/config
     - src: .config/aquaproj-aqua/aqua.yaml
       dest: .config/aquaproj-aqua/aqua.yaml

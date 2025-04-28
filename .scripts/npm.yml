@@ -12,8 +12,9 @@
   loop:
     - "@anthropic-ai/claude-code"
     - "@trivago/prettier-plugin-sort-imports"
+    - commitizen
+    - cz-git
     - eas-cli
-    - git-cz
     - npm-check-updates
     - prettier
     - tsx
