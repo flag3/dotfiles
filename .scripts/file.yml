@@ -31,8 +31,6 @@
       dest: .gitconfig
     - src: .gitignore
       dest: .gitignore
-    - src: .latexmkrc
-      dest: .latexmkrc
     - src: .ssh/config
       dest: .ssh/config
     - src: .config/aquaproj-aqua/aqua.yaml
