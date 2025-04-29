@@ -8,17 +8,14 @@
     name:
       - ansible
       - aqua
-      - cocoapods
       - fish
       - git
       - imagemagick
-      - latexindent
       - libpq
       - make
       - mas
       - mtr
       - mysql-client
-      - rgbds
       - rust
       - tig
       - tmux
