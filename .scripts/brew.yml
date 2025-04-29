@@ -8,15 +8,12 @@
     name:
       - ansible
       - aqua
-      - cocoapods
       - fish
       - git
       - imagemagick
-      - latexindent
       - make
       - mas
       - mtr
-      - rgbds
       - rust
       - tig
       - tmux
