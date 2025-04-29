@@ -34,7 +34,6 @@ packages:
   - name: oven-sh/bun@bun-v1.2.15
   - name: pnpm/pnpm@v10.11.0
   - name: pressly/goose@v3.24.3
-  - name: rust-lang/rust-analyzer@2025-05-26
   - name: sharkdp/fd@v10.2.0
   - name: sqlc-dev/sqlc@v1.29.0
   - name: x-motemen/ghq@v1.8.0
