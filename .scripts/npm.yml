@@ -11,7 +11,6 @@
     name: "{{ item }}"
   loop:
     - "@anthropic-ai/claude-code"
-    - "@google/gemini-cli"
     - "@trivago/prettier-plugin-sort-imports"
     - commitizen
     - cz-git
