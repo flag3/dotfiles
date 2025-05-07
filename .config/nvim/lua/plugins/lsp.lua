@@ -2,6 +2,7 @@ return {
 	-- tools
 	{
 		"williamboman/mason.nvim",
+		version = "1.11.0",
 		opts = function(_, opts)
 			vim.list_extend(opts.ensure_installed, {
 				"stylua",
@@ -14,6 +15,10 @@ return {
 				"css-lsp",
 			})
 		end,
+	},
+	{
+		"williamboman/mason-lspconfig.nvim",
+		version = "1.32.0",
 	},
 
 	-- lsp servers
