@@ -1,14 +1,14 @@
 registries:
   - type: standard
-    ref: v4.362.0
+    ref: v4.366.0
 packages:
-  - name: ariga/atlas@v0.32.0
+  - name: ariga/atlas@v0.33.0
   - name: authzed/zed@v0.30.2
-  - name: aws/aws-cli@2.27.9
+  - name: aws/aws-cli@2.27.13
   - name: aws/session-manager-plugin@1.2.707.0
   - name: biomejs/biome@cli/v1.9.4
   - name: boyter/scc@v3.5.0
-  - name: bufbuild/buf@v1.53.0
+  - name: bufbuild/buf@v1.54.0
   - name: BurntSushi/ripgrep@14.1.1
   - name: cloudflare/cloudflared@2025.4.2
   - name: denoland/deno@v2.3.1
@@ -25,14 +25,16 @@ packages:
   - name: jqlang/jq@jq-1.7.1
   - name: junegunn/fzf@v0.62.0
   - name: k1LoW/tbls@v1.85.2
-  - name: kayac/ecspresso@v2.4.6
+  - name: kayac/ecspresso@v2.5.0
   - name: ko-build/ko@v0.18.0
-  - name: mikefarah/yq@v4.45.2
+  - name: mikefarah/yq@v4.45.4
   - name: neovim/neovim@v0.11.1
-  - name: nodejs/node@v23.11.0
+  - name: nodejs/node@v24.0.1
+  - name: openfga/cli@v0.6.6
+  - name: oven-sh/bun@bun-v1.2.13
   - name: pnpm/pnpm@v10.10.0
   - name: pressly/goose@v3.24.3
-  - name: rust-lang/rust-analyzer@2025-05-05
+  - name: rust-lang/rust-analyzer@2025-05-12
   - name: sharkdp/fd@v10.2.0
   - name: sqlc-dev/sqlc@v1.29.0
   - name: x-motemen/ghq@v1.8.0
