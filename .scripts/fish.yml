@@ -8,3 +8,22 @@
     state: link
     src: ~/Library/Mobile Documents/com~apple~CloudDocs/fish
     dest: ~/.local/share/fish
+
+- name: find fish in PATH
+  shell: which fish
+  register: fish_path
+  failed_when: false
+  changed_when: false
+
+- name: add fish to /etc/shells
+  become: yes
+  lineinfile:
+    path: /etc/shells
+    line: "{{ fish_path.stdout }}"
+    state: present
+  when: fish_path.rc == 0
+
+- name: change login shell
+  become: yes
+  shell: chsh -s {{ fish_path.stdout }} {{ ansible_user_id }}
+  when: fish_path.rc == 0
