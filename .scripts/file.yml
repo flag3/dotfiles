@@ -24,8 +24,6 @@
   loop:
     - src: .czrc
       dest: .czrc
-    - src: .zshrc
-      dest: .zshrc
     - src: .npmrc
       dest: .npmrc
     - src: .gitconfig

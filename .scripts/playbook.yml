@@ -5,9 +5,6 @@
     - import_tasks: file.yml
       tags:
         - file
-    - import_tasks: fish.yml
-      tags:
-        - fish
     - import_tasks: sudoers.yml
       tags:
         - sudoers
@@ -23,6 +20,9 @@
     - import_tasks: brew.yml
       tags:
         - brew
+    - import_tasks: fish.yml
+      tags:
+        - fish
     - import_tasks: aquaproj-aqua.yml
       tags:
         - aqua
