@@ -27,7 +27,6 @@
       - mas
       - mtr
       - mysql-client
-      - p7zip
       - rgbds
       - rust
       - tig
