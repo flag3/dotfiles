@@ -17,9 +17,7 @@
       - beeftornado/rmtree/brew-rmtree
       - cocoapods
       - fish
-      - gh
       - git
-      - hub
       - imagemagick
       - latexindent
       - libpq
