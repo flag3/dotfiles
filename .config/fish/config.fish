@@ -67,9 +67,3 @@ end
 # Fzf
 set -g FZF_PREVIEW_FILE_CMD "bat --style=numbers --color=always --line-range :500"
 set -g FZF_LEGACY_KEYBINDINGS 0
-
-function ide
-    tmux split-window -v -l 30%
-    tmux split-window -h -l 66%
-    tmux split-window -h -l 50%
-end
