@@ -20,6 +20,9 @@ alias ll "ls -l"
 alias lla "ll -A"
 alias g git
 alias c claude
+alias npm pnpm
+alias npx "pnpm dlx"
+alias pnpx "pnpm dlx"
 command -qv nvim && alias vim nvim
 
 set -gx EDITOR nvim
