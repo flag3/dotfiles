@@ -2,6 +2,7 @@ registries:
   - type: standard
     ref: v4.380.0
 packages:
+  - name: 1password/cli@v2.30.3
   - name: ariga/atlas@v0.35.0
   - name: authzed/zed@v0.30.2
   - name: aws/aws-cli@2.27.43

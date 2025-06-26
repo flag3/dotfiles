@@ -28,6 +28,11 @@ set -gx PATH bin $PATH
 set -gx PATH ~/bin $PATH
 set -gx PATH ~/.local/bin $PATH
 
+# 1password
+if [ -x (command -v op) ]
+    alias pnpm "op run --no-masking -- pnpm"
+end
+
 # go
 if [ -x (command -v go) ]
     set -gx GOPATH "$HOME/.go"
@@ -39,6 +44,8 @@ set NPM_PATH "$HOME/.npm/bin"
 if [ -d $NPM_PATH ]
     fish_add_path -g $NPM_PATH
 end
+
+set -gx NPM_PKG_GITHUB_PAT "op://2442cozdn6slbp7xxuqldkydjm/kp5feviv6zrc5zcrqxwzbk7ukq/token"
 
 # python
 set PYTHON_INCLUDE "$HOME/.venv/bin/activate.fish"
