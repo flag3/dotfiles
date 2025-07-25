@@ -2,19 +2,12 @@
   homebrew:
     update_homebrew: true
 
-- name: tap brew repository
-  homebrew_tap:
-    name:
-      - aquaproj/aqua
-      - beeftornado/rmtree
-
 - name: install brew packages
   homebrew:
     state: latest
     name:
       - ansible
-      - aquaproj/aqua/aqua
-      - beeftornado/rmtree/brew-rmtree
+      - aqua
       - cocoapods
       - fish
       - git

@@ -1,11 +1,11 @@
 registries:
   - type: standard
-    ref: v4.391.0
+    ref: v4.392.0
 packages:
   - name: 1password/cli@v2.30.3
   - name: ariga/atlas@v0.36.0
   - name: authzed/zed@v0.30.2
-  - name: aws/aws-cli@2.27.58
+  - name: aws/aws-cli@2.27.59
   - name: aws/session-manager-plugin@1.2.707.0
   - name: biomejs/biome@@biomejs/biome@2.1.2
   - name: boyter/scc@v3.5.0
