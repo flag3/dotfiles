@@ -1,11 +1,11 @@
 registries:
   - type: standard
-    ref: v4.392.0
+    ref: v4.394.0
 packages:
   - name: 1password/cli@v2.30.3
   - name: ariga/atlas@v0.36.0
   - name: authzed/zed@v0.30.2
-  - name: aws/aws-cli@2.27.59
+  - name: aws/aws-cli@2.27.60
   - name: aws/session-manager-plugin@1.2.707.0
   - name: biomejs/biome@@biomejs/biome@2.1.2
   - name: boyter/scc@v3.5.0
@@ -26,7 +26,7 @@ packages:
   - name: ip7z/7zip@25.00
   - name: jesseduffield/lazygit@v0.53.0
   - name: jqlang/jq@jq-1.8.1
-  - name: junegunn/fzf@v0.64.0
+  - name: junegunn/fzf@v0.65.0
   - name: k1LoW/tbls@v1.86.1
   - name: kayac/ecspresso@v2.5.0
   - name: ko-build/ko@v0.18.0
@@ -39,7 +39,7 @@ packages:
   - name: oven-sh/bun@bun-v1.2.19
   - name: pnpm/pnpm@v10.13.1
   - name: pressly/goose@v3.24.3
-  - name: rust-lang/rust-analyzer@2025-07-21
+  - name: rust-lang/rust-analyzer@2025-07-28
   - name: sharkdp/bat@v0.25.0
   - name: sharkdp/fd@v10.2.0
   - name: sqlc-dev/sqlc@v1.29.0
