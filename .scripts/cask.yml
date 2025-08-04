@@ -7,13 +7,12 @@
       - aquaskk
       - claude
       - cloudflare-warp
-      - docker
+      - docker-desktop
       - figma
-      - flutter
       - font-plemol-jp-nf
+      - gcloud-cli
       - ghostty
       - google-chrome
-      - google-cloud-sdk
       - google-drive
       - karabiner-elements
       - keycastr
