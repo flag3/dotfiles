@@ -1,0 +1,31 @@
+- name: Add Context7 MCP server (HTTP transport)
+  shell: claude mcp add -s user --transport http context7 https://mcp.context7.com/mcp
+  register: context7_result
+  failed_when:
+    - context7_result.rc != 0
+    - '"already exists" not in context7_result.stderr'
+  changed_when: '"already exists" not in context7_result.stderr'
+
+- name: Add Figma Dev Mode MCP server (HTTP transport)
+  shell: claude mcp add -s user --transport http figma-dev-mode-mcp-server http://127.0.0.1:3845/mcp
+  register: figma_result
+  failed_when:
+    - figma_result.rc != 0
+    - '"already exists" not in figma_result.stderr'
+  changed_when: '"already exists" not in figma_result.stderr'
+
+- name: Add Playwright MCP server
+  shell: claude mcp add -s user playwright npx @playwright/mcp@latest
+  register: playwright_result
+  failed_when:
+    - playwright_result.rc != 0
+    - '"already exists" not in playwright_result.stderr'
+  changed_when: '"already exists" not in playwright_result.stderr'
+
+- name: Add Serena MCP server
+  shell: "claude mcp add -s user serena -- uvx --from git+https://github.com/oraios/serena serena-mcp-server --context ide-assistant --project {{ ansible_env.PWD }}"
+  register: serena_result
+  failed_when:
+    - serena_result.rc != 0
+    - '"already exists" not in serena_result.stderr'
+  changed_when: '"already exists" not in serena_result.stderr'
