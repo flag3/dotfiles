@@ -1,13 +1,13 @@
-- name: Add Context7 MCP server (HTTP transport)
-  shell: claude mcp add -s user --transport http context7 https://mcp.context7.com/mcp
+- name: Add Context7 MCP server (SSE transport)
+  shell: claude mcp add -s user --transport sse context7 https://mcp.context7.com/sse
   register: context7_result
   failed_when:
     - context7_result.rc != 0
     - '"already exists" not in context7_result.stderr'
   changed_when: '"already exists" not in context7_result.stderr'
 
-- name: Add Figma Dev Mode MCP server (HTTP transport)
-  shell: claude mcp add -s user --transport http figma-dev-mode-mcp-server http://127.0.0.1:3845/mcp
+- name: Add Figma Dev Mode MCP server (SSE transport)
+  shell: claude mcp add -s user --transport sse figma-dev-mode-mcp-server http://127.0.0.1:3845/sse
   register: figma_result
   failed_when:
     - figma_result.rc != 0
