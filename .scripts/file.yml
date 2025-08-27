@@ -27,8 +27,6 @@
       dest: .czrc
     - src: .npmrc
       dest: .npmrc
-    - src: .prettierrc.yml
-      dest: .prettierrc.yml
     - src: .gitconfig
       dest: .gitconfig
     - src: .gitignore

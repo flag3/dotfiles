@@ -35,9 +35,9 @@
     - import_tasks: npm.yml
       tags:
         - npm
-    - import_tasks: mcp.yml
+    - import_tasks: claude-code-mcp.yml
       tags:
-        - mcp
+        - claude-code-mcp
     - import_tasks: gcloud.yml
       tags:
         - gcloud
