@@ -4,4 +4,3 @@
     id: "{{ item }}"
   loop:
     - 1444383602 # Goodnotes 6
-    - 1447043133 # Cursor Pro
