@@ -68,23 +68,9 @@ if is_pandoc_compatible() then
 		vim.cmd("!pandoc %:p -o %:p:r.html")
 	end, { desc = "html" })
 
-	keymap.set("n", "<leader>pl", function()
-		vim.cmd("!pandoc %:p -o %:p:r.tex")
-	end, { desc = "latex" })
-
 	keymap.set("n", "<leader>pm", function()
 		vim.cmd("!pandoc %:p -o %:p:r.md")
 	end, { desc = "markdown" })
-
-	keymap.set("n", "<leader>pp", function()
-		vim.cmd(
-			"!pandoc %:p -o %:p:r.pdf --pdf-engine=lualatex -V documentclass=ltjsarticle -V luatexjapresetoptions=hiragino-pron"
-		)
-	end, { desc = "pdf" })
-
-	keymap.set("n", "<leader>pv", function()
-		vim.cmd("!open -a Skim %:p:r.pdf &")
-	end, { desc = "view" })
 
 	keymap.set("n", "<leader>pw", function()
 		vim.cmd("!pandoc %:p -o %:p:r.docx")
