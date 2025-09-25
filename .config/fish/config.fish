@@ -19,8 +19,6 @@ alias la "ls -A"
 alias ll "ls -l"
 alias lla "ll -A"
 alias g git
-alias c claude
-alias claude-yolo "claude --dangerously-skip-permissions"
 command -qv nvim && alias vim nvim
 
 set -gx EDITOR nvim
@@ -77,12 +75,6 @@ end
 if type -q eza
     alias ll "eza -l -g --icons"
     alias lla "ll -a"
-end
-
-# lean
-set LEAN_PATH "$HOME/.elan"
-if [ -d $LEAN_PATH ]
-    fish_add_path -g "$LEAN_PATH/bin"
 end
 
 # Fzf
