@@ -8,7 +8,6 @@
     name:
       - ansible
       - aqua
-      - cocoapods
       - fish
       - git
       - imagemagick
