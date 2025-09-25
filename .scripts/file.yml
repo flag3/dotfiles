@@ -5,6 +5,7 @@
     mode: 0700
   loop:
     - .ssh
+    - .codex
     - .config/aquaproj-aqua
     - .config/fish/conf.d
     - .config/fish/functions
@@ -61,3 +62,15 @@
       dest: .config/tmux
     - src: bin/ide
       dest: bin/ide
+
+- name: check codex config presence
+  stat:
+    path: ~/.codex/config.toml
+  register: codex_config
+
+- name: bootstrap codex config when missing
+  copy:
+    dest: ~/.codex/config.toml
+    mode: "0600"
+    content: "{{ lookup('file', playbook_dir ~ '/../.codex/config.toml') | replace('(User)', ansible_user_id) }}"
+  when: not codex_config.stat.exists
