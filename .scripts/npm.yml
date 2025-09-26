@@ -6,7 +6,6 @@
     name: "{{ item }}"
   loop:
     - "@anthropic-ai/claude-code"
-    - "@google/gemini-cli"
     - "@openai/codex"
     - commitizen
     - cz-git

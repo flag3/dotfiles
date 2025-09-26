@@ -5,6 +5,7 @@
     mode: 0700
   loop:
     - .ssh
+    - .claude
     - .codex
     - .config/aquaproj-aqua
     - .config/fish/conf.d
@@ -32,10 +33,12 @@
       dest: .gitconfig
     - src: .gitignore
       dest: .gitignore
-    - src: .latexmkrc
-      dest: .latexmkrc
     - src: .ssh/config
       dest: .ssh/config
+    - src: .claude/CLAUDE.md
+      dest: .claude/CLAUDE.md
+    - src: .codex/AGENTS.md
+      dest: .codex/AGENTS.md
     - src: .config/aquaproj-aqua/aqua.yaml
       dest: .config/aquaproj-aqua/aqua.yaml
     - src: .config/hub
