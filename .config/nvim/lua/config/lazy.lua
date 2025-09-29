@@ -33,6 +33,7 @@ require("lazy").setup({
 		{ import = "lazyvim.plugins.extras.lang.tailwind" },
 		{ import = "lazyvim.plugins.extras.lang.terraform" },
 		{ import = "lazyvim.plugins.extras.lang.tex" },
+		{ import = "lazyvim.plugins.extras.lang.toml" },
 		{ import = "lazyvim.plugins.extras.lang.vue" },
 		{ import = "lazyvim.plugins.extras.lang.yaml" },
 		-- { import = "lazyvim.plugins.extras.dap.core" },
