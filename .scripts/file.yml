@@ -13,6 +13,7 @@
     - .config/karabiner/assets
     - Library/Application Support/lazygit
     - .config/nvim
+    - .cursor
     - .local/share
     - bin
 
@@ -74,3 +75,19 @@
     mode: "0600"
     content: "{{ lookup('file', playbook_dir ~ '/../.codex/config.toml') | replace('(User)', ansible_user_id) }}"
   when: not codex_config.stat.exists
+
+- name: check cursor mcp presence
+  stat:
+    path: ~/.cursor/mcp.json
+  register: cursor_mcp
+
+- name: sync cursor mcp configuration
+  copy:
+    dest: ~/.cursor/mcp.json
+    mode: "0600"
+    content: "{{ lookup('file', playbook_dir ~ '/../.cursor/mcp.json') | replace('(User)', ansible_user_id) }}"
+  when: not cursor_mcp.stat.exists
+
+- name: update dotfiles cursor config from current system
+  shell: sed "s/{{ ansible_user_id }}/(User)/g" ~/.cursor/mcp.json > "{{ playbook_dir }}/../.cursor/mcp.json"
+  changed_when: false

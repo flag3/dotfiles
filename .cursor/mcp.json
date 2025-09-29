@@ -1,0 +1,38 @@
+{
+  "mcpServers": {
+    "context7": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@upstash/context7-mcp"
+      ],
+      "env": {
+        "AQUA_GLOBAL_CONFIG": "/Users/(User)/.config/aquaproj-aqua/aqua.yaml"
+      }
+    },
+    "Figma": {
+      "url": "http://127.0.0.1:3845/mcp"
+    },
+    "playwright": {
+      "command": "npx",
+      "args": [
+        "@playwright/mcp@latest"
+      ],
+      "env": {
+        "AQUA_GLOBAL_CONFIG": "/Users/(User)/.config/aquaproj-aqua/aqua.yaml"
+      }
+    },
+    "serena": {
+      "command": "uvx",
+      "args": [
+        "--from",
+        "git+https://github.com/oraios/serena",
+        "serena",
+        "start-mcp-server"
+      ],
+      "env": {
+        "AQUA_GLOBAL_CONFIG": "/Users/(User)/.config/aquaproj-aqua/aqua.yaml"
+      }
+    }
+  }
+}
