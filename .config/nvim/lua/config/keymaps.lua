@@ -55,3 +55,38 @@ keymap.set("i", "<C-j>", "<Plug>(skkeleton-enable)", {
 	silent = true,
 	desc = "Evaluate",
 })
+
+-- Pandoc
+local function is_pandoc_compatible()
+	return vim.tbl_contains({ "markdown", "md", "tex", "latex", "org", "rst", "html", "docx" }, vim.bo.filetype)
+end
+
+if is_pandoc_compatible() then
+	keymap.set("n", "<leader>p", "", { desc = "pandoc" })
+
+	keymap.set("n", "<leader>ph", function()
+		vim.cmd("!pandoc %:p -o %:p:r.html")
+	end, { desc = "html" })
+
+	keymap.set("n", "<leader>pl", function()
+		vim.cmd("!pandoc %:p -o %:p:r.tex")
+	end, { desc = "latex" })
+
+	keymap.set("n", "<leader>pm", function()
+		vim.cmd("!pandoc %:p -o %:p:r.md")
+	end, { desc = "markdown" })
+
+	keymap.set("n", "<leader>pp", function()
+		vim.cmd(
+			"!pandoc %:p -o %:p:r.pdf --pdf-engine=lualatex -V documentclass=ltjsarticle -V luatexjapresetoptions=hiragino-pron"
+		)
+	end, { desc = "pdf" })
+
+	keymap.set("n", "<leader>pv", function()
+		vim.cmd("!open -a Skim %:p:r.pdf &")
+	end, { desc = "view" })
+
+	keymap.set("n", "<leader>pw", function()
+		vim.cmd("!pandoc %:p -o %:p:r.docx")
+	end, { desc = "word" })
+end

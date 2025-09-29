@@ -15,6 +15,7 @@
       - make
       - mas
       - mtr
+      - pandoc
       - rgbds
       - rust
       - tig
