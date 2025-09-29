@@ -6,9 +6,13 @@
     name: "{{ item }}"
   loop:
     - "@anthropic-ai/claude-code"
+    - "@github/copilot"
     - "@google/gemini-cli"
     - "@openai/codex"
+    - "@qwen-code/qwen-code"
+    - "@vibe-kit/grok-cli"
     - commitizen
     - cz-git
     - npm-check-updates
+    - opencode-ai
     - prettier

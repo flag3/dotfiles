@@ -13,6 +13,7 @@ require("lazy").setup({
 			colorscheme = "solarized-osaka",
 		} },
 		-- import any extras modules here
+		{ import = "lazyvim.plugins.extras.ai.sidekick" },
 		{ import = "lazyvim.plugins.extras.linting.eslint" },
 		{ import = "lazyvim.plugins.extras.formatting.biome" },
 		{ import = "lazyvim.plugins.extras.formatting.prettier" },
