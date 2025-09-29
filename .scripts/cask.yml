@@ -5,7 +5,6 @@
       - 1password
       - android-studio
       - aquaskk
-      - cloudflare-warp
       - cursor
       - docker-desktop
       - figma
@@ -13,7 +12,6 @@
       - gcloud-cli
       - ghostty
       - google-chrome
-      - google-drive
       - karabiner-elements
       - keycastr
       - mactex

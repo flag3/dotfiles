@@ -31,6 +31,29 @@
       type: bool
       value: false
 
+- name: configure com.apple.finder
+  osx_defaults:
+    domain: com.apple.finder
+    key: "{{ item.key }}"
+    type: "{{ item.type }}"
+    value: "{{ item.value }}"
+  loop:
+    - key: FXPreferredViewStyle
+      type: string
+      value: Nlsv
+    - key: FXDefaultSearchScope
+      type: string
+      value: SCcf
+    - key: FinderSpawnTab
+      type: bool
+      value: false
+    - key: _FXSortFoldersFirst
+      type: bool
+      value: true
+    - key: QuitMenuItem
+      type: bool
+      value: true
+
 - name: configure com.apple.desktopservices
   osx_defaults:
     domain: com.apple.dock
