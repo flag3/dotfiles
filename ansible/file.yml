@@ -61,7 +61,7 @@
       dest: .config/nvim/lua
     - src: .config/tmux
       dest: .config/tmux
-    - src: bin/ide
+    - src: .scripts/ide
       dest: bin/ide
 
 - name: check codex config presence
