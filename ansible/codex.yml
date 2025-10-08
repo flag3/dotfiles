@@ -1,0 +1,16 @@
+- name: install codex mcp servers
+  codex_mcp_servers:
+    name: "{{ mcp.name }}"
+    command: "{{ mcp.command | default(omit) }}"
+  loop:
+    - name: context7
+      command: npx -y @upstash/context7-mcp
+    - name: figma-dev-mode-mcp-server
+      command: npx -y mcp-remote http://127.0.0.1:3845/mcp
+    - name: playwright
+      command: npx @playwright/mcp@latest
+    - name: serena
+      command: uvx --from git+https://github.com/oraios/serena serena-mcp-server --context ide-assistant
+  loop_control:
+    loop_var: mcp
+    label: "{{ mcp.name }}"
