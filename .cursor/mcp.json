@@ -28,7 +28,9 @@
         "--from",
         "git+https://github.com/oraios/serena",
         "serena",
-        "start-mcp-server"
+        "start-mcp-server",
+        ".",
+        "--enable-web-dashboard=false"
       ],
       "env": {
         "AQUA_GLOBAL_CONFIG": "/Users/(User)/.config/aquaproj-aqua/aqua.yaml"
