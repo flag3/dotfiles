@@ -6,7 +6,6 @@
   homebrew:
     state: latest
     name:
-      - ansible
       - aqua
       - fish
       - git

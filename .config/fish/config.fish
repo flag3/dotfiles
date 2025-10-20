@@ -21,8 +21,6 @@ alias lla "ll -A"
 alias g git
 alias c claude
 alias claude-yolo "claude --dangerously-skip-permissions"
-alias pnpx "pnpm dlx"
-alias bunx "bun x"
 command -qv nvim && alias vim nvim
 
 set -gx EDITOR nvim
@@ -42,19 +40,32 @@ if [ -x (command -v go) ]
     fish_add_path -g "$GOPATH/bin"
 end
 
+# npm
+set NPM_PATH "$HOME/.npm/bin"
+if [ -d $NPM_PATH ]
+    fish_add_path -g $NPM_PATH
+end
+
+set -gx NPM_PKG_GITHUB_PAT "op://2442cozdn6slbp7xxuqldkydjm/kp5feviv6zrc5zcrqxwzbk7ukq/token"
+
 # bun
 set BUN_PATH "$HOME/.bun/bin"
 if [ -d $BUN_PATH ]
     fish_add_path -g $BUN_PATH
+    alias bunx "bun x"
 end
 
-set -gx NPM_PKG_GITHUB_PAT "op://2442cozdn6slbp7xxuqldkydjm/kp5feviv6zrc5zcrqxwzbk7ukq/token"
+# pnpm
+if [ -x (command -v pnpm) ]
+    alias pnpx "pnpm dlx"
+end
 
 # python
 set PYTHON_INCLUDE "$HOME/.venv/bin/activate.fish"
 if [ -r $PYTHON_INCLUDE ]
     set VIRTUAL_ENV_DISABLE_PROMPT true
     source $PYTHON_INCLUDE
+    alias pip "uv pip"
 end
 
 # aqua
