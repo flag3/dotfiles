@@ -49,6 +49,7 @@ packages:
   - name: sqlc-dev/sqlc@v1.30.0
   - name: supabase/cli@v2.51.0
   - name: theseus-rs/postgresql-binaries@18.0.0
+  - name: typst/typst@v0.13.1
   - name: uber-go/mock@v0.6.0
   - name: x-motemen/ghq@v1.8.0
   - name: xo/usql@v0.19.26

@@ -82,6 +82,10 @@ if is_pandoc_compatible() then
 		)
 	end, { desc = "pdf" })
 
+	keymap.set("n", "<leader>pt", function()
+		vim.cmd("!pandoc %:p -o %:p:r.typ")
+	end, { desc = "typst" })
+
 	keymap.set("n", "<leader>pv", function()
 		vim.cmd("!open -a Skim %:p:r.pdf &")
 	end, { desc = "view" })
