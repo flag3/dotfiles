@@ -1,6 +1,5 @@
 - name: install npm packages
   npm:
-    executable: bun
     state: latest
     global: true
     name: "{{ item }}"
