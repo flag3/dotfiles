@@ -5,9 +5,9 @@
     url: "{{ mcp.url | default(omit) }}"
   loop:
     - name: context7
-      url: https://mcp.context7.com/sse
-    - name: figma-dev-mode-mcp-server
-      url: http://127.0.0.1:3845/sse
+      command: npx -y @upstash/context7-mcp
+    - name: figma
+      url: https://mcp.figma.com/mcp
     - name: playwright
       command: npx @playwright/mcp@latest
     - name: serena

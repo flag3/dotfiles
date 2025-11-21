@@ -5,8 +5,8 @@
   loop:
     - name: context7
       command: npx -y @upstash/context7-mcp
-    - name: figma-dev-mode-mcp-server
-      command: npx -y mcp-remote http://127.0.0.1:3845/mcp
+    - name: figma
+      url: https://mcp.figma.com/mcp
     - name: playwright
       command: npx @playwright/mcp@latest
     - name: serena

@@ -12,7 +12,7 @@ base_command="claude mcp add --scope user"
 if [ -n "$command" ]; then
   final_command="$base_command $name -- $command"
 elif [ -n "$url" ]; then
-  final_command="$base_command --transport sse $name $url"
+  final_command="$base_command --transport http $name $url"
 fi
 
 $final_command
