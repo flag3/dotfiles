@@ -1,6 +1,0 @@
-- name: install gcloud components
-  gcloud_components:
-    name: "{{ item }}"
-  loop:
-    - beta
-    - gke-gcloud-auth-plugin

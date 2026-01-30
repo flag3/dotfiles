@@ -1,0 +1,10 @@
+- name: check cursor installation
+  stat:
+    path: "~/.local/bin/agent"
+  register: cursor
+
+- name: install cursor
+  shell: curl https://cursor.com/install -fsS | bash
+  args:
+    executable: /bin/bash
+  when: not cursor.stat.exists
