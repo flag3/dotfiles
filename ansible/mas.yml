@@ -3,5 +3,5 @@
     state: latest
     id: "{{ item }}"
   loop:
-    - 1444383602 # Goodnotes 6
+    - 1388020431 # DevCleaner for Xcode
     - 1447043133 # Cursor Pro

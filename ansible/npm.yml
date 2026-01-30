@@ -4,11 +4,12 @@
     global: true
     name: "{{ item }}"
   loop:
-    - "@anthropic-ai/claude-code"
     - "@github/copilot"
     - "@google/gemini-cli"
     - "@openai/codex"
     - commitizen
     - cz-git
     - npm-check-updates
+    - oxfmt
+    - oxlint
     - prettier
