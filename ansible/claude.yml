@@ -1,9 +1,22 @@
+- name: check claude installation
+  stat:
+    path: "~/.local/bin/claude"
+  register: claude
+
+- name: install claude
+  shell: curl -fsSL https://claude.ai/install.sh | bash
+  args:
+    executable: /bin/bash
+  when: not claude.stat.exists
+
 - name: install claude mcp servers
   claude_mcp_servers:
     name: "{{ mcp.name }}"
     command: "{{ mcp.command | default(omit) }}"
     url: "{{ mcp.url | default(omit) }}"
   loop:
+    - name: chrome-devtools
+      command: npx chrome-devtools-mcp@latest
     - name: context7
       command: npx -y @upstash/context7-mcp
     - name: figma
@@ -11,7 +24,7 @@
     - name: playwright
       command: npx @playwright/mcp@latest
     - name: serena
-      command: uvx --from git+https://github.com/oraios/serena serena start-mcp-server --context ide-assistant . --enable-web-dashboard=false
+      command: uvx --from git+https://github.com/oraios/serena serena start-mcp-server --context claude-code . --enable-web-dashboard=false
   loop_control:
     loop_var: mcp
     label: "{{ mcp.name }}"

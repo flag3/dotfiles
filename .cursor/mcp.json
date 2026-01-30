@@ -1,5 +1,15 @@
 {
   "mcpServers": {
+    "chrome-devtools": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "chrome-devtools-mcp@latest"
+      ],
+      "env": {
+        "AQUA_GLOBAL_CONFIG": "/Users/(User)/.config/aquaproj-aqua/aqua.yaml"
+      }
+    },
     "context7": {
       "command": "npx",
       "args": [
@@ -9,9 +19,6 @@
       "env": {
         "AQUA_GLOBAL_CONFIG": "/Users/(User)/.config/aquaproj-aqua/aqua.yaml"
       }
-    },
-    "Figma": {
-      "url": "http://127.0.0.1:3845/mcp"
     },
     "playwright": {
       "command": "npx",
@@ -29,6 +36,8 @@
         "git+https://github.com/oraios/serena",
         "serena",
         "start-mcp-server",
+        "--context",
+        "ide",
         ".",
         "--enable-web-dashboard=false"
       ],
