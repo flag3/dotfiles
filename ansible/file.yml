@@ -4,7 +4,6 @@
     path: ~/{{ item }}
     mode: 0700
   loop:
-    - .ssh
     - .claude
     - .codex
     - .config/aquaproj-aqua
@@ -12,10 +11,11 @@
     - .config/fish/functions
     - .config/ghostty
     - .config/karabiner/assets
-    - Library/Application Support/lazygit
     - .config/nvim
     - .cursor
     - .local/share
+    - .ssh
+    - Library/Application Support/lazygit
     - bin
 
 - name: link files
@@ -26,18 +26,6 @@
     force: true
     follow: false
   loop:
-    - src: .czrc
-      dest: .czrc
-    - src: .npmrc
-      dest: .npmrc
-    - src: .gitconfig
-      dest: .gitconfig
-    - src: .gitignore
-      dest: .gitignore
-    - src: .latexmkrc
-      dest: .latexmkrc
-    - src: .ssh/config
-      dest: .ssh/config
     - src: .claude/agents
       dest: .claude/agents
     - src: .claude/commands
@@ -48,8 +36,6 @@
       dest: .claude/skills
     - src: .config/aquaproj-aqua/aqua.yaml
       dest: .config/aquaproj-aqua/aqua.yaml
-    - src: .config/hub
-      dest: .config/hub
     - src: .config/fish/config.fish
       dest: .config/fish/config.fish
     - src: .config/fish/conf.d/tide.fish
@@ -60,6 +46,8 @@
       dest: .config/fish/functions/fzf_change_directory.fish
     - src: .config/ghostty/config
       dest: .config/ghostty/config
+    - src: .config/hub
+      dest: .config/hub
     - src: .config/karabiner
       dest: .config/karabiner/assets/complex_modifications
     - src: .config/lazygit/config.yml
@@ -70,8 +58,20 @@
       dest: .config/nvim/lua
     - src: .config/tmux
       dest: .config/tmux
+    - src: .czrc
+      dest: .czrc
+    - src: .gitconfig
+      dest: .gitconfig
+    - src: .gitignore
+      dest: .gitignore
+    - src: .latexmkrc
+      dest: .latexmkrc
+    - src: .npmrc
+      dest: .npmrc
     - src: .scripts/ide
       dest: bin/ide
+    - src: .ssh/config
+      dest: .ssh/config
 
 - name: check cursor mcp presence
   stat:

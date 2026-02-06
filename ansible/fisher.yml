@@ -14,10 +14,10 @@
   environment:
     name: "{{ item }}"
   loop:
-    - jethrokuan/z
-    - ilancosman/tide
     - edc/bass
     - danhper/fish-ssh-agent
+    - ilancosman/tide
+    - jethrokuan/z
     - jorgebucaran/nvm.fish
     - patrickf1/fzf.fish
 

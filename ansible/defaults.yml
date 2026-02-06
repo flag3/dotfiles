@@ -4,12 +4,12 @@
     type: "{{ item.type }}"
     value: "{{ item.value }}"
   loop:
-    - key: KeyRepeat
-      type: float
-      value: 2
     - key: InitialKeyRepeat
       type: float
       value: 25
+    - key: KeyRepeat
+      type: float
+      value: 2
 
 - name: configure com.apple.dock
   osx_defaults:
@@ -18,16 +18,16 @@
     type: "{{ item.type }}"
     value: "{{ item.value }}"
   loop:
-    - key: show-recents
+    - key: autohide
+      type: bool
+      value: true
+    - key: mru-spaces
       type: bool
       value: false
     - key: recent-apps
       type: array
       value: []
-    - key: autohide
-      type: bool
-      value: true
-    - key: mru-spaces
+    - key: show-recents
       type: bool
       value: false
 
@@ -38,19 +38,19 @@
     type: "{{ item.type }}"
     value: "{{ item.value }}"
   loop:
-    - key: FXPreferredViewStyle
-      type: string
-      value: Nlsv
     - key: FXDefaultSearchScope
       type: string
       value: SCcf
+    - key: FXPreferredViewStyle
+      type: string
+      value: Nlsv
     - key: FinderSpawnTab
       type: bool
       value: false
-    - key: _FXSortFoldersFirst
+    - key: QuitMenuItem
       type: bool
       value: true
-    - key: QuitMenuItem
+    - key: _FXSortFoldersFirst
       type: bool
       value: true
 
@@ -61,9 +61,9 @@
     type: "{{ item.type }}"
     value: "{{ item.value }}"
   loop:
-    - key: DSDontWriteUSBStores
+    - key: DSDontWriteNetworkStores
       type: bool
       value: true
-    - key: DSDontWriteNetworkStores
+    - key: DSDontWriteUSBStores
       type: bool
       value: true
