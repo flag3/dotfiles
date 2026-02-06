@@ -20,6 +20,9 @@
         "AQUA_GLOBAL_CONFIG": "/Users/(User)/.config/aquaproj-aqua/aqua.yaml"
       }
     },
+    "figma": {
+      "url": "https://mcp.figma.com/mcp"
+    },
     "playwright": {
       "command": "npx",
       "args": [

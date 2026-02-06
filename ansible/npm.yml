@@ -4,7 +4,6 @@
     global: true
     name: "{{ item }}"
   loop:
-    - "@google/gemini-cli"
     - commitizen
     - cz-git
     - npm-check-updates

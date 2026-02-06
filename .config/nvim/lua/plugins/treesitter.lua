@@ -6,15 +6,9 @@ return {
 		build = ":TSUpdate",
 		opts = {
 			ensure_installed = {
-				"cmake",
 				"css",
 				"fish",
-				"graphql",
 				"http",
-				"java",
-				"php",
-				"scss",
-				"svelte",
 			},
 
 			-- matchup = {
