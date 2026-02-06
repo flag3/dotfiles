@@ -1,14 +1,3 @@
-- name: check claude installation
-  stat:
-    path: "~/.local/bin/claude"
-  register: claude
-
-- name: install claude
-  shell: curl -fsSL https://claude.ai/install.sh | bash
-  args:
-    executable: /bin/bash
-  when: not claude.stat.exists
-
 - name: install claude mcp servers
   claude_mcp_servers:
     name: "{{ mcp.name }}"

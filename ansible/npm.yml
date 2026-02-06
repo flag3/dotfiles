@@ -4,9 +4,7 @@
     global: true
     name: "{{ item }}"
   loop:
-    - "@github/copilot"
     - "@google/gemini-cli"
-    - "@openai/codex"
     - commitizen
     - cz-git
     - npm-check-updates
