@@ -8,3 +8,19 @@
   args:
     executable: /bin/bash
   when: not cursor.stat.exists
+
+- name: install cursor extensions
+  cursor_extension:
+    name: "{{ item }}"
+  loop:
+    - asvetliakov.vscode-neovim
+    - bradlc.vscode-tailwindcss
+    - bufbuild.vscode-buf
+    - docker.docker
+    - esbenp.prettier-vscode
+    - golang.go
+    - hashicorp.terraform
+    - oxc.oxc-vscode
+    - redhat.vscode-yaml
+    - unifiedjs.vscode-mdx
+    - vue.volar
