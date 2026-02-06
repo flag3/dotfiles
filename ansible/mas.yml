@@ -1,7 +1,0 @@
-- name: install mas packages
-  mas:
-    state: latest
-    id: "{{ item }}"
-  loop:
-    - 1388020431 # DevCleaner for Xcode
-    - 1447043133 # Cursor Pro

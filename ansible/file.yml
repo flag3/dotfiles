@@ -15,6 +15,7 @@
     - .cursor
     - .local/share
     - .ssh
+    - Library/Application Support/Cursor/User
     - Library/Application Support/lazygit
     - bin
 
@@ -26,6 +27,8 @@
     force: true
     follow: false
   loop:
+    - src: .claude/CLAUDE.md
+      dest: .claude/CLAUDE.md
     - src: .claude/agents
       dest: .claude/agents
     - src: .claude/commands
@@ -34,8 +37,14 @@
       dest: .claude/rules
     - src: .claude/skills
       dest: .claude/skills
+    - src: .codex/AGENTS.md
+      dest: .codex/AGENTS.md
     - src: .config/aquaproj-aqua/aqua.yaml
       dest: .config/aquaproj-aqua/aqua.yaml
+    - src: .config/cursor/keybindings.json
+      dest: Library/Application Support/Cursor/User/keybindings.json
+    - src: .config/cursor/settings.json
+      dest: Library/Application Support/Cursor/User/settings.json
     - src: .config/fish/config.fish
       dest: .config/fish/config.fish
     - src: .config/fish/conf.d/tide.fish
@@ -64,8 +73,6 @@
       dest: .gitconfig
     - src: .gitignore
       dest: .gitignore
-    - src: .latexmkrc
-      dest: .latexmkrc
     - src: .npmrc
       dest: .npmrc
     - src: .scripts/ide

@@ -14,9 +14,6 @@
     - import_tasks: nvram.yml
       tags:
         - nvram
-    - import_tasks: rosetta.yml
-      tags:
-        - rosetta
     - import_tasks: brew.yml
       tags:
         - brew
@@ -38,15 +35,9 @@
     - import_tasks: tmux.yml
       tags:
         - tmux
-    - import_tasks: lean.yml
-      tags:
-        - lean
     - import_tasks: cask.yml
       tags:
         - cask
-    - import_tasks: mas.yml
-      tags:
-        - mas
     - import_tasks: claude.yml
       tags:
         - claude
