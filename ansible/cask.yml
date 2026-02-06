@@ -3,23 +3,15 @@
     state: latest
     name:
       - 1password
-      - android-studio
       - aquaskk
       - claude
+      - cursor
       - docker-desktop
       - font-plemol-jp-nf
       - gcloud-cli
       - ghostty
-      - google-chrome
       - karabiner-elements
-      - keycastr
-      - mactex
-      - microsoft-office
       - numi
       - raycast
-      - skim
       - tableplus
-      - tailscale-app
-      - whisky
       - zoom
-      - zotero
