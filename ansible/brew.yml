@@ -13,7 +13,6 @@
       - latexindent
       - make
       - mas
-      - mtr
       - pandoc
       - rgbds
       - rust
