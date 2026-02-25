@@ -2,6 +2,7 @@
   codex_mcp_servers:
     name: "{{ mcp.name }}"
     command: "{{ mcp.command | default(omit) }}"
+    url: "{{ mcp.url | default(omit) }}"
   loop:
     - name: chrome-devtools
       command: npx chrome-devtools-mcp@latest
