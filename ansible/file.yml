@@ -4,7 +4,6 @@
     path: ~/{{ item }}
     mode: 0700
   loop:
-    - .claude
     - .codex
     - .config/aquaproj-aqua
     - .config/fish/conf.d
@@ -12,7 +11,6 @@
     - .config/ghostty
     - .config/karabiner/assets
     - .config/nvim
-    - .cursor
     - .local/share
     - .ssh
     - Library/Application Support/lazygit
@@ -26,14 +24,6 @@
     force: true
     follow: false
   loop:
-    - src: .claude/agents
-      dest: .claude/agents
-    - src: .claude/commands
-      dest: .claude/commands
-    - src: .claude/rules
-      dest: .claude/rules
-    - src: .claude/skills
-      dest: .claude/skills
     - src: .config/aquaproj-aqua/aqua.yaml
       dest: .config/aquaproj-aqua/aqua.yaml
     - src: .config/fish/config.fish
@@ -72,19 +62,3 @@
       dest: bin/ide
     - src: .ssh/config
       dest: .ssh/config
-
-- name: check cursor mcp presence
-  stat:
-    path: ~/.cursor/mcp.json
-  register: cursor_mcp
-
-- name: sync cursor mcp configuration
-  copy:
-    dest: ~/.cursor/mcp.json
-    mode: "0600"
-    content: "{{ lookup('file', playbook_dir ~ '/../.cursor/mcp.json') | replace('(User)', ansible_facts['user_id']) }}"
-  when: not cursor_mcp.stat.exists
-
-- name: update dotfiles cursor config from current system
-  shell: sed "s/{{ ansible_facts['user_id'] }}/(User)/g" ~/.cursor/mcp.json > "{{ playbook_dir }}/../.cursor/mcp.json"
-  changed_when: false

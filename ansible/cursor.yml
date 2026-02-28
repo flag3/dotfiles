@@ -8,3 +8,9 @@
   args:
     executable: /bin/bash
   when: not cursor.stat.exists
+
+- name: install cursor plugins from everything-claude-code
+  shell: ~/.claude/plugins/marketplaces/everything-claude-code/install.sh --target cursor golang python swift typescript
+  args:
+    chdir: "{{ ansible_facts.env.HOME }}"
+  tags: cursor
