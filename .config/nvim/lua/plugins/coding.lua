@@ -51,6 +51,7 @@ return {
 		opts = {
 			suggestion = {
 				auto_trigger = true,
+				enabled = true,
 				keymap = {
 					accept = "<C-l>",
 					accept_word = "<M-l>",
