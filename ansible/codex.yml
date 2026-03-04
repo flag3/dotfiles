@@ -1,5 +1,17 @@
-- name: copy codex config from everything-claude-code
-  copy:
-    src: ~/.claude/plugins/marketplaces/everything-claude-code/.codex/config.toml
-    dest: ~/.codex/config.toml
-  tags: codex
+- name: install codex mcp servers
+  codex_mcp_servers:
+    name: "{{ mcp.name }}"
+    command: "{{ mcp.command | default(omit) }}"
+    url: "{{ mcp.url | default(omit) }}"
+  loop:
+    - name: context7
+      command: npx -y @upstash/context7-mcp@latest
+    - name: github
+      command: npx -y @modelcontextprotocol/server-github
+    - name: memory
+      command: npx -y @modelcontextprotocol/server-memory
+    - name: sequential-thinking
+      command: npx -y @modelcontextprotocol/server-sequential-thinking
+  loop_control:
+    loop_var: mcp
+    label: "{{ mcp.name }}"
