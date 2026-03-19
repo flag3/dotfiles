@@ -1,0 +1,8 @@
+- name: install codex mcp servers
+  codex_mcp_servers:
+    name: "{{ item.name }}"
+    command: "{{ item.command | default(omit) }}"
+    url: "{{ item.url | default(omit) }}"
+  loop:
+    - name: figma
+      url: https://mcp.figma.com/mcp

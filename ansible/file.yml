@@ -25,6 +25,8 @@
     force: true
     follow: false
   loop:
+    - src: .claude/CLAUDE.md
+      dest: .claude/CLAUDE.md
     - src: .config/aquaproj-aqua/aqua.yaml
       dest: .config/aquaproj-aqua/aqua.yaml
     - src: .config/cursor/settings.json
@@ -57,8 +59,6 @@
       dest: .gitconfig
     - src: .gitignore
       dest: .gitignore
-    - src: .latexmkrc
-      dest: .latexmkrc
     - src: .npmrc
       dest: .npmrc
     - src: .oxfmtrc.json

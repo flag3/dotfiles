@@ -9,8 +9,6 @@
     - esbenp.prettier-vscode
     - golang.go
     - hashicorp.terraform
-    - james-yu.latex-workshop
-    - leanprover.lean4
     - oxc.oxc-vscode
     - redhat.vscode-yaml
     - unifiedjs.vscode-mdx
