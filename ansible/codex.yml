@@ -1,0 +1,14 @@
+- name: set AQUA_GLOBAL_CONFIG on stdio MCP servers when missing
+  codex_mcp_stdio_aqua_env:
+
+- name: install codex mcp servers
+  codex_mcp_servers:
+    name: "{{ mcp.name }}"
+    command: "{{ mcp.command | default(omit) }}"
+    url: "{{ mcp.url | default(omit) }}"
+  loop:
+    - name: figma
+      url: https://mcp.figma.com/mcp
+  loop_control:
+    loop_var: mcp
+    label: "{{ mcp.name }}"
