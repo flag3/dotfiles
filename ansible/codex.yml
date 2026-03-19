@@ -6,6 +6,8 @@
   loop:
     - name: context7
       command: npx -y @upstash/context7-mcp@latest
+    - name: figma
+      url: https://mcp.figma.com/mcp
     - name: github
       command: npx -y @modelcontextprotocol/server-github
     - name: memory
