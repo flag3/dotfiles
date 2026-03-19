@@ -3,7 +3,6 @@
     state: latest
     name:
       - 1password
-      - android-studio
       - aquaskk
       - chatgpt-atlas
       - claude
@@ -12,16 +11,9 @@
       - font-plemol-jp-nf
       - gcloud-cli
       - ghostty
-      - google-chrome
       - karabiner-elements
-      - keycastr
-      - mactex
-      - microsoft-office
       - numi
       - porting-kit
       - raycast
-      - skim
       - tableplus
-      - tailscale-app
       - zoom
-      - zotero

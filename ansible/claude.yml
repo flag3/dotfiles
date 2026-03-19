@@ -10,8 +10,10 @@
   claude_plugins:
     name: "{{ item }}"
   loop:
+    - chrome-devtools-mcp@claude-plugins-official
     - codex@openai-codex
     - everything-claude-code@everything-claude-code
+    - figma@claude-plugins-official
     - notion@claude-plugins-official
 
 - name: install mattpocock skills (provides /grill-me)
