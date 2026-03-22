@@ -58,6 +58,8 @@
       dest: .latexmkrc
     - src: .npmrc
       dest: .npmrc
+    - src: .oxfmtrc.json
+      dest: .oxfmtrc.json
     - src: .scripts/ide
       dest: bin/ide
     - src: .ssh/config
