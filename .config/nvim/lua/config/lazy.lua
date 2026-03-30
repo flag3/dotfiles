@@ -13,9 +13,9 @@ require("lazy").setup({
 			colorscheme = "solarized-osaka",
 		} },
 		-- import any extras modules here
-		{ import = "lazyvim.plugins.extras.ai.copilot" },
 		{ import = "lazyvim.plugins.extras.ai.avante" },
 		{ import = "lazyvim.plugins.extras.ai.claudecode" },
+		{ import = "lazyvim.plugins.extras.ai.copilot-native" },
 		{ import = "lazyvim.plugins.extras.ai.sidekick" },
 		{ import = "lazyvim.plugins.extras.linting.eslint" },
 		{ import = "lazyvim.plugins.extras.formatting.biome" },
