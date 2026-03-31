@@ -1,8 +1,35 @@
-- name: check installed claude plugins
+- name: check configured claude plugin marketplaces
   shell: claude plugin marketplace list
-  register: claude
+  register: claude_marketplace
+  changed_when: false
 
-- name: install claude plugins
+- name: add everything-claude-code to marketplace
   shell: claude plugin marketplace add affaan-m/everything-claude-code
-  when: "'everything-claude-code' not in claude.stdout"
+  when: "'everything-claude-code' not in claude_marketplace.stdout"
+  tags: claude
+
+- name: check installed claude plugins
+  shell: claude plugin list
+  register: claude_plugins
+  changed_when: false
+
+- name: install everything-claude-code plugin
+  shell: claude plugin install everything-claude-code@everything-claude-code
+  when: "'everything-claude-code' not in claude_plugins.stdout"
+  tags: claude
+
+- name: clone or update everything-claude-code with ghq
+  shell: ghq get -u affaan-m/everything-claude-code
+  tags: claude
+
+- name: install npm dependencies for everything-claude-code
+  shell: npm install
+  args:
+    chdir: "{{ ansible_facts['env']['HOME'] }}/.ghq/github.com/affaan-m/everything-claude-code"
+  tags: claude
+
+- name: run install.sh --profile full
+  shell: ./install.sh --profile full
+  args:
+    chdir: "{{ ansible_facts['env']['HOME'] }}/.ghq/github.com/affaan-m/everything-claude-code"
   tags: claude
