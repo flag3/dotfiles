@@ -1,0 +1,56 @@
+- name: add everything-claude-code to marketplace
+  command: claude plugin marketplace add affaan-m/everything-claude-code
+  register: claude_plugin_marketplace_add_result
+  changed_when: "'already on disk' not in claude_plugin_marketplace_add_result.stdout"
+
+- name: check everything-claude-code plugin installation
+  command: claude plugin list everything-claude-code@everything-claude-code
+  register: claude_plugin_list
+  changed_when: false
+
+- name: install everything-claude-code plugin
+  command: claude plugin install everything-claude-code@everything-claude-code
+  when: "'everything-claude-code' not in claude_plugin_list.stdout"
+
+- name: clone or pull everything-claude-code
+  command: ghq get -u affaan-m/everything-claude-code
+  register: result
+  changed_when: "'Already up to date' not in result.stderr"
+
+- name: install npm dependencies
+  command: npm install
+  args:
+    chdir: "~/.ghq/github.com/affaan-m/everything-claude-code"
+  when: result.changed
+
+- name: run install.sh --profile full
+  command: ./install.sh --profile full
+  args:
+    chdir: "~/.ghq/github.com/affaan-m/everything-claude-code"
+  when: result.changed
+
+- name: create ~/.codex directory
+  file:
+    state: directory
+    path: "~/.codex"
+    mode: 0700
+
+- name: link config.toml file
+  file:
+    state: link
+    src: "~/.ghq/github.com/affaan-m/everything-claude-code/.codex/config.toml"
+    dest: "~/.codex/config.toml"
+    force: true
+    follow: false
+
+- name: sync ecc to codex
+  command: bash scripts/sync-ecc-to-codex.sh
+  args:
+    chdir: "~/.ghq/github.com/affaan-m/everything-claude-code"
+  when: result.changed
+
+- name: run install.sh --target cursor
+  command: ./install.sh --target cursor typescript python golang swift php
+  args:
+    chdir: "~/.claude/plugins/marketplaces/everything-claude-code"
+  when: result.changed

@@ -4,7 +4,6 @@
     path: ~/{{ item }}
     mode: 0700
   loop:
-    - .codex
     - .config/aquaproj-aqua
     - .config/fish/conf.d
     - .config/fish/functions

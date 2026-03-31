@@ -47,12 +47,6 @@
     - import_tasks: mas.yml
       tags:
         - mas
-    - import_tasks: claude.yml
+    - import_tasks: ecc.yml
       tags:
-        - claude
-    - import_tasks: codex.yml
-      tags:
-        - codex
-    - import_tasks: cursor.yml
-      tags:
-        - cursor
+        - ecc
