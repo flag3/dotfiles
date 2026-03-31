@@ -1,17 +1,28 @@
-- name: install codex mcp servers
-  codex_mcp_servers:
-    name: "{{ mcp.name }}"
-    command: "{{ mcp.command | default(omit) }}"
-    url: "{{ mcp.url | default(omit) }}"
-  loop:
-    - name: context7
-      command: npx -y @upstash/context7-mcp@latest
-    - name: github
-      command: npx -y @modelcontextprotocol/server-github
-    - name: memory
-      command: npx -y @modelcontextprotocol/server-memory
-    - name: sequential-thinking
-      command: npx -y @modelcontextprotocol/server-sequential-thinking
-  loop_control:
-    loop_var: mcp
-    label: "{{ mcp.name }}"
+- name: ensure ~/.codex directory exists
+  file:
+    path: "{{ ansible_facts['env']['HOME'] }}/.codex"
+    state: directory
+  tags: codex
+
+- name: copy codex config.toml from ECC repo if not present
+  copy:
+    src: "{{ ansible_facts['env']['HOME'] }}/.ghq/github.com/affaan-m/everything-claude-code/.codex/config.toml"
+    dest: "{{ ansible_facts['env']['HOME'] }}/.codex/config.toml"
+    force: false
+  tags: codex
+
+- name: install npm dependencies for everything-claude-code
+  shell: npm install
+  args:
+    chdir: "{{ ansible_facts['env']['HOME'] }}/.ghq/github.com/affaan-m/everything-claude-code"
+  tags: codex
+
+- name: sync ECC assets to codex
+  shell: bash scripts/sync-ecc-to-codex.sh
+  args:
+    chdir: "{{ ansible_facts['env']['HOME'] }}/.ghq/github.com/affaan-m/everything-claude-code"
+  tags: codex
+
+- name: set core.hooksPath without absolute path expansion
+  shell: git config --global core.hooksPath '~/.codex/git-hooks'
+  tags: codex

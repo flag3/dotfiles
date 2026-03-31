@@ -2,6 +2,7 @@
 	excludesfile = ~/.gitignore
 	editor = nvim
 	ignorecase = false
+	hooksPath = ~/.codex/git-hooks
 [push]
 	default = simple
 [color]
