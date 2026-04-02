@@ -49,6 +49,13 @@
     chdir: "~/.ghq/github.com/affaan-m/everything-claude-code"
   when: result.changed
 
+- name: restore hooksPath to tilde notation
+  lineinfile:
+    path: "~/.gitconfig"
+    regexp: '^\s*hooksPath\s*='
+    line: "\thooksPath = ~/.codex/git-hooks"
+  when: result.changed
+
 - name: run install.sh --target cursor
   command: ./install.sh --target cursor typescript python golang swift php
   args:
