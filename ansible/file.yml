@@ -4,6 +4,7 @@
     path: ~/{{ item }}
     mode: 0700
   loop:
+    - .codex
     - .config/aquaproj-aqua
     - .config/fish/conf.d
     - .config/fish/functions
@@ -63,3 +64,10 @@
       dest: bin/ide
     - src: .ssh/config
       dest: .ssh/config
+
+- name: touch file
+  file:
+    state: touch
+    path: ~/.codex/config.toml
+    access_time: preserve
+    modification_time: preserve

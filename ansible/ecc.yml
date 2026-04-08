@@ -12,6 +12,13 @@
   command: claude plugin install everything-claude-code@everything-claude-code
   when: "'everything-claude-code' not in claude_plugin_list.stdout"
 
+- name: restore tracked files before updating everything-claude-code
+  command: git restore --source=HEAD --worktree --staged .
+  args:
+    chdir: "~/.ghq/github.com/affaan-m/everything-claude-code"
+  changed_when: false
+  failed_when: false
+
 - name: clone or pull everything-claude-code
   command: ghq get -u affaan-m/everything-claude-code
   register: result
@@ -28,20 +35,6 @@
   args:
     chdir: "~/.ghq/github.com/affaan-m/everything-claude-code"
   when: result.changed
-
-- name: create ~/.codex directory
-  file:
-    state: directory
-    path: "~/.codex"
-    mode: 0700
-
-- name: link config.toml file
-  file:
-    state: link
-    src: "~/.ghq/github.com/affaan-m/everything-claude-code/.codex/config.toml"
-    dest: "~/.codex/config.toml"
-    force: true
-    follow: false
 
 - name: sync ecc to codex
   command: bash scripts/sync-ecc-to-codex.sh
