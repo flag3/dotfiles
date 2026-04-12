@@ -42,6 +42,10 @@
     chdir: "~/.ghq/github.com/affaan-m/everything-claude-code"
   when: result.changed
 
+- name: configure aqua env for codex mcp servers
+  codex_mcp_env:
+  when: result.changed
+
 - name: restore hooksPath to tilde notation
   lineinfile:
     path: "~/.gitconfig"

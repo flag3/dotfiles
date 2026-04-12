@@ -1,0 +1,17 @@
+{
+  "[go]": { "editor.defaultFormatter": "golang.go" },
+  "[proto]": { "editor.defaultFormatter": "bufbuild.vscode-buf" },
+  "docker.extension.enableComposeLanguageServer": false,
+  "editor.defaultFormatter": "oxc.oxc-vscode",
+  "files.associations": { "*.css": "tailwindcss" },
+  "go.toolsManagement.autoUpdate": true,
+  "latex-workshop.latex.tools": [
+    {
+      "name": "latexmk",
+      "command": "latexmk",
+      "args": ["%DOC%"]
+    }
+  ],
+  "oxc.typeAware": true,
+  "workbench.colorTheme": "Solarized Light"
+}

@@ -23,12 +23,12 @@ packages:
   - name: GoogleCloudPlatform/cloud-sql-proxy@v2.21.2
   - name: gotestyourself/gotestsum@v1.13.0
   - name: hashicorp/terraform@v1.14.8
-  - name: ip7z/7zip@26.00
   - name: jesseduffield/lazygit@v0.60.0
   - name: jqlang/jq@jq-1.8.1
   - name: junegunn/fzf@v0.70.0
   - name: k1LoW/tbls@v1.94.0
   - name: ko-build/ko@v0.18.1
+  - name: mattn/goreman@v0.3.17
   - name: mikefarah/yq@v4.52.5
   - name: mislav/hub@v2.14.2
   - name: mvdan/gofumpt@v0.9.2
@@ -38,7 +38,6 @@ packages:
   - name: oven-sh/bun@bun-v1.3.11
   - name: pnpm/pnpm@v10.33.0
   - name: pressly/goose@v3.27.0
-  - name: rclone/rclone@v1.73.3
   - name: rust-lang/rust-analyzer@2026-03-30
   - name: sharkdp/bat@v0.26.1
   - name: sharkdp/fd@v10.4.2

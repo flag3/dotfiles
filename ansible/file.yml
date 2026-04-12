@@ -13,6 +13,7 @@
     - .config/nvim
     - .local/share
     - .ssh
+    - Library/Application Support/Cursor/User
     - Library/Application Support/lazygit
     - bin
 
@@ -26,6 +27,8 @@
   loop:
     - src: .config/aquaproj-aqua/aqua.yaml
       dest: .config/aquaproj-aqua/aqua.yaml
+    - src: .config/cursor/settings.json
+      dest: Library/Application Support/Cursor/User/settings.json
     - src: .config/fish/config.fish
       dest: .config/fish/config.fish
     - src: .config/fish/conf.d/tide.fish

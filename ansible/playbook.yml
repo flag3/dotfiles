@@ -50,3 +50,6 @@
     - import_tasks: ecc.yml
       tags:
         - ecc
+    - import_tasks: cursor.yml
+      tags:
+        - cursor
