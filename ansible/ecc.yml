@@ -52,9 +52,3 @@
     regexp: '^\s*hooksPath\s*='
     line: "\thooksPath = ~/.codex/git-hooks"
   when: result.changed
-
-- name: run install.sh --target cursor
-  command: ./install.sh --target cursor typescript python golang swift php
-  args:
-    chdir: "~/.claude/plugins/marketplaces/everything-claude-code"
-  when: result.changed
