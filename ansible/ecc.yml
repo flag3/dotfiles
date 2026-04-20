@@ -1,17 +1,3 @@
-- name: add everything-claude-code to marketplace
-  command: claude plugin marketplace add affaan-m/everything-claude-code
-  register: claude_plugin_marketplace_add_result
-  changed_when: "'already on disk' not in claude_plugin_marketplace_add_result.stdout"
-
-- name: check everything-claude-code plugin installation
-  command: claude plugin list everything-claude-code@everything-claude-code
-  register: claude_plugin_list
-  changed_when: false
-
-- name: install everything-claude-code plugin
-  command: claude plugin install everything-claude-code@everything-claude-code
-  when: "'everything-claude-code' not in claude_plugin_list.stdout"
-
 - name: restore tracked files before updating everything-claude-code
   command: git restore --source=HEAD --worktree --staged .
   args:

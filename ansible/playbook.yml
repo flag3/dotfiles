@@ -47,6 +47,9 @@
     - import_tasks: mas.yml
       tags:
         - mas
+    - import_tasks: claude.yml
+      tags:
+        - claude
     - import_tasks: ecc.yml
       tags:
         - ecc

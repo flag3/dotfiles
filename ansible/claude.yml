@@ -1,0 +1,11 @@
+- name: add claude plugin marketplaces
+  claude_plugin_marketplaces:
+    name: "{{ item }}"
+  loop:
+    - affaan-m/everything-claude-code
+
+- name: install claude plugins
+  claude_plugins:
+    name: "{{ item }}"
+  loop:
+    - everything-claude-code@everything-claude-code
