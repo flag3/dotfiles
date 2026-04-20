@@ -3,9 +3,13 @@
     name: "{{ item }}"
   loop:
     - affaan-m/everything-claude-code
+    - anthropics/claude-plugins-official
+    - openai/codex-plugin-cc
 
 - name: install claude plugins
   claude_plugins:
     name: "{{ item }}"
   loop:
+    - codex@openai-codex
     - everything-claude-code@everything-claude-code
+    - notion@claude-plugins-official
