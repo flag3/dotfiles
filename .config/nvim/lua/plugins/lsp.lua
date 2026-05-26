@@ -4,15 +4,15 @@ return {
 		"mason-org/mason.nvim",
 		opts = function(_, opts)
 			vim.list_extend(opts.ensure_installed, {
-				"stylua",
-				"selene",
+				"css-lsp",
+				"latexindent",
 				"luacheck",
-				"oxlint",
+				"selene",
 				"shellcheck",
 				"shfmt",
+				"stylua",
 				"tailwindcss-language-server",
 				"typescript-language-server",
-				"css-lsp",
 			})
 		end,
 	},
