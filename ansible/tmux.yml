@@ -3,7 +3,11 @@
     repo: "https://github.com/{{ item }}"
     dest: "{{ playbook_dir }}/../.config/tmux/plugins/{{ item | basename }}"
   loop:
+    - craftzdog/tmux-claude-session-manager
     - tmux-plugins/tmux-pain-control
     - tmux-plugins/tpm
   register: result
   changed_when: result.before != result.after
+
+- name: customize tmux-claude-session-manager for Codex sessions
+  tmux_codex_session_manager:

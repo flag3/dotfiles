@@ -1,0 +1,2 @@
+- name: register tmux session-manager status hooks in Codex
+  codex_session_status_hooks:
