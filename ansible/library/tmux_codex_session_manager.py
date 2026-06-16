@@ -20,6 +20,24 @@ LAUNCH_REPLACEMENTS = [
     ),
 ]
 
+LIST_REPLACEMENTS = [
+    (
+        "prefix=\"$(get_tmux_option @claude_session_prefix 'claude-')\"",
+        "claude_prefix=\"$(get_tmux_option @claude_session_prefix 'claude-')\"\n"
+        "codex_prefix=\"$(get_tmux_option @codex_session_prefix 'codex-')\"",
+    ),
+    (
+        "awk -v p=\"$prefix\" 'index($2, p) == 1 { print $2; exit }'",
+        "awk -v c=\"$claude_prefix\" -v x=\"$codex_prefix\" "
+        "'index($2, c) == 1 || index($2, x) == 1 { print $2; exit }'",
+    ),
+    (
+        "awk -v p=\"$prefix\" 'index($2, p) != 1 { print $1; exit }'",
+        "awk -v c=\"$claude_prefix\" -v x=\"$codex_prefix\" "
+        "'index($2, c) != 1 && index($2, x) != 1 { print $1; exit }'",
+    ),
+]
+
 PICKER_REPLACEMENTS = [
     (
         "prefix=\"$(get_tmux_option @claude_session_prefix 'claude-')\"",
@@ -73,6 +91,7 @@ with tempfile.TemporaryDirectory() as temp_dir:
 
     replace_text("claude_session_manager.tmux", TMUX_REPLACEMENTS)
     replace_text("scripts/launch.sh", LAUNCH_REPLACEMENTS)
+    replace_text("scripts/list.sh", LIST_REPLACEMENTS)
     replace_text("scripts/picker.sh", PICKER_REPLACEMENTS)
 
     generated_files = set()
