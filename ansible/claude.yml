@@ -14,5 +14,8 @@
     - everything-claude-code@everything-claude-code
     - notion@claude-plugins-official
 
+- name: add Claude Code session status hooks
+  claude_session_status_hooks:
+
 - name: install mattpocock skills (provides /grill-me)
   command: npx -y skills@latest add mattpocock/skills -g -y -a claude-code -a codex

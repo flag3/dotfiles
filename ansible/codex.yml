@@ -1,0 +1,2 @@
+- name: add Codex session status hooks
+  codex_session_status_hooks:
