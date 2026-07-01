@@ -5,6 +5,7 @@
       - 1password
       - android-studio
       - aquaskk
+      - chatgpt-atlas
       - claude
       - codex-app
       - docker-desktop
@@ -18,8 +19,9 @@
       - microsoft-office
       - numi
       - raycast
+      - sameboy
       - skim
       - tableplus
-      - whisky
+      - tailscale-app
       - zoom
       - zotero
