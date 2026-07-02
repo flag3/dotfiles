@@ -53,3 +53,6 @@
     - import_tasks: ecc.yml
       tags:
         - ecc
+    - import_tasks: codex.yml
+      tags:
+        - codex

@@ -13,3 +13,6 @@
     - codex@openai-codex
     - everything-claude-code@everything-claude-code
     - notion@claude-plugins-official
+
+- name: add Claude Code session status hooks
+  claude_session_status_hooks:
