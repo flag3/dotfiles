@@ -1,0 +1,8 @@
+- name: clone/pull repositories
+  ignore_errors: true
+  git:
+    repo: git@github.com:{{ item.repo }}.git
+    dest: ~/{{ item.dest }}
+  loop:
+    - repo: flag3/tmux-agent-session-manager
+      dest: .config/tmux/plugins/tmux-agent-session-manager

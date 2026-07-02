@@ -44,6 +44,9 @@
     - import_tasks: mas.yml
       tags:
         - mas
+    - import_tasks: git.yml
+      tags:
+        - git
     - import_tasks: claude.yml
       tags:
         - claude
