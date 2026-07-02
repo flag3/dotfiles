@@ -43,6 +43,21 @@ return {
 	},
 
 	{
+		"esmuellert/codediff.nvim",
+		cmd = "CodeDiff",
+		keys = {
+			{ "<leader>gD", "<cmd>CodeDiff<cr>", desc = "CodeDiff Status" },
+			{ "<leader>gd", "<cmd>CodeDiff file HEAD<cr>", desc = "CodeDiff Current File" },
+			{ "<leader>gh", "<cmd>CodeDiff history<cr>", desc = "CodeDiff History" },
+		},
+		opts = {
+			diff = {
+				layout = "side-by-side",
+			},
+		},
+	},
+
+	{
 		"nvim-telescope/telescope.nvim",
 		dependencies = {
 			{
