@@ -1,8 +1,5 @@
 set fish_greeting ""
 
-set HOMEBREW_PREFIX /opt/homebrew
-fish_add_path -g "$HOMEBREW_PREFIX/bin" "$HOMEBREW_PREFIX/sbin"
-
 set -gx TERM xterm-256color
 
 # theme
@@ -26,50 +23,50 @@ command -qv nvim && alias vim nvim
 set -gx EDITOR nvim
 
 set -gx PATH bin $PATH
-set -gx PATH ~/bin $PATH
-set -gx PATH ~/.local/bin $PATH
+fish_add_path -g ~/.local/bin ~/bin
 
-# 1password
-if [ -x (command -v op) ]
-    alias pnpm "op run --no-masking -- pnpm"
+set HOMEBREW_PREFIX /opt/homebrew
+fish_add_path -g "$HOMEBREW_PREFIX/bin" "$HOMEBREW_PREFIX/sbin"
+
+set -gx SSH_AUTH_SOCK "$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+
+# docker
+if test -x (command -v docker)
+    set -gx DOCKER_BUILDKIT 1
+    set -gx COMPOSE_DOCKER_CLI_BUILD 1
 end
 
 # go
-if [ -x (command -v go) ]
-    set -gx GOPATH "$HOME/.go"
+if test -x (command -v go)
+    set -gx GOPATH $HOME/.go
     fish_add_path -g "$GOPATH/bin"
 end
 
 # npm
-set NPM_PATH "$HOME/.npm/bin"
-if [ -d $NPM_PATH ]
-    fish_add_path -g $NPM_PATH
+set NPM_BIN_PATH $HOME/.npm/bin
+if test -d $NPM_BIN_PATH
+    fish_add_path -g $NPM_BIN_PATH
 end
 
 set -gx NPM_PKG_GITHUB_PAT "op://2442cozdn6slbp7xxuqldkydjm/kp5feviv6zrc5zcrqxwzbk7ukq/token"
 
-# bun
-set BUN_PATH "$HOME/.bun/bin"
-if [ -d $BUN_PATH ]
-    fish_add_path -g $BUN_PATH
-    alias bunx "bun x"
-end
-
-# pnpm
-if [ -x (command -v pnpm) ]
-    alias pnpx "pnpm dlx"
-end
-
 # python
-set PYTHON_INCLUDE "$HOME/.venv/bin/activate.fish"
-if [ -r $PYTHON_INCLUDE ]
+set PYTHON_INCLUDE $HOME/.venv/bin/activate.fish
+if test -r $PYTHON_INCLUDE
     set VIRTUAL_ENV_DISABLE_PROMPT true
     source $PYTHON_INCLUDE
     alias pip "uv pip"
 end
 
+# gcloud-cli
+set GOOGLE_CLOUD_SDK_BIN_PATH $HOMEBREW_PREFIX/share/google-cloud-sdk/bin
+if test -d $GOOGLE_CLOUD_SDK_BIN_PATH
+    set -gx CLOUDSDK_PYTHON (which python)
+    fish_add_path -g $GOOGLE_CLOUD_SDK_BIN_PATH
+end
+
 # aqua
-if [ -x (command -v aqua) ]
+if test -x (command -v aqua)
     fish_add_path -g (aqua root-dir)/bin
     set -gx AQUA_GLOBAL_CONFIG $HOME/.config/aquaproj-aqua/aqua.yaml
 end
@@ -80,16 +77,16 @@ if type -q eza
 end
 
 # lean
-set LEAN_PATH "$HOME/.elan"
-if [ -d $LEAN_PATH ]
+set LEAN_PATH $HOME/.elan
+if test -d $LEAN_PATH
     fish_add_path -g "$LEAN_PATH/bin"
 end
 
-# Fzf
+# fzf
 set -g FZF_PREVIEW_FILE_CMD "bat --style=numbers --color=always --line-range :500"
 set -g FZF_LEGACY_KEYBINDINGS 0
 
-set LOCAL_CONFIG "$HOME/.config/fish/config-local.fish"
-if [ -r $LOCAL_CONFIG ]
+set LOCAL_CONFIG (dirname (status --current-filename))/config-local.fish
+if test -f $LOCAL_CONFIG
     source $LOCAL_CONFIG
 end
