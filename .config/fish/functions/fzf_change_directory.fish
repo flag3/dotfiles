@@ -20,6 +20,5 @@ function fzf_change_directory
             end
         end
         ls -ad */ | perl -pe "s#^#$PWD/#" | grep -v \.git
-        ls -ad $HOME/Developments/*/* | grep -v \.git
     end | sed -e 's/\/$//' | awk '!a[$0]++' | _fzf_change_directory $argv
 end
