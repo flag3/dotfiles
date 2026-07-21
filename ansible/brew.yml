@@ -10,9 +10,7 @@
       - fish
       - git
       - imagemagick
-      - latexindent
       - make
-      - rgbds
       - tig
       - tmux
       - wget
