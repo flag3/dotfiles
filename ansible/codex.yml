@@ -1,2 +1,13 @@
 - name: add Codex session status hooks
   codex_session_status_hooks:
+
+- name: install codex mcp servers
+  codex_mcp_servers:
+    name: "{{ item.name }}"
+    command: "{{ item.command | default(omit) }}"
+    url: "{{ item.url | default(omit) }}"
+  loop:
+    - name: figma
+      url: https://mcp.figma.com/mcp
+    - name: notion
+      url: https://mcp.notion.com/mcp
