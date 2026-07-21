@@ -5,9 +5,8 @@
       - 1password
       - android-studio
       - aquaskk
-      - chatgpt-atlas
+      - chatgpt
       - claude
-      - codex-app
       - docker-desktop
       - font-plemol-jp-nf
       - gcloud-cli
@@ -18,8 +17,8 @@
       - mactex
       - microsoft-office
       - numi
+      - obsidian
       - raycast
-      - sameboy
       - skim
       - tableplus
       - tailscale-app
