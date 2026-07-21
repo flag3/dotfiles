@@ -66,8 +66,6 @@
       dest: .gitconfig
     - src: .gitignore
       dest: .gitignore
-    - src: .latexmkrc
-      dest: .latexmkrc
     - src: .npmrc
       dest: .npmrc
     - src: .scripts/ide
