@@ -50,11 +50,17 @@ end
 
 set -gx NPM_PKG_GITHUB_PAT "op://2442cozdn6slbp7xxuqldkydjm/kp5feviv6zrc5zcrqxwzbk7ukq/token"
 
+# rust
+set RUST_INCLUDE $HOME/.cargo/env.fish
+if test -r $RUST_INCLUDE
+    source $RUST_INCLUDE
+end
+
 # python
-set PYTHON_INCLUDE $HOME/.venv/bin/activate.fish
-if test -r $PYTHON_INCLUDE
-    set VIRTUAL_ENV_DISABLE_PROMPT true
-    source $PYTHON_INCLUDE
+set PYTHON_VENV_PATH $HOME/.venv
+if test -d $PYTHON_VENV_PATH/bin
+    set -gx VIRTUAL_ENV $PYTHON_VENV_PATH
+    fish_add_path -g "$PYTHON_VENV_PATH/bin"
     alias pip "uv pip"
 end
 
