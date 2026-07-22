@@ -4,6 +4,7 @@
     path: ~/{{ item }}
     mode: 0700
   loop:
+    - .claude
     - .codex
     - .config/aquaproj-aqua
     - .config/fish/conf.d
@@ -24,6 +25,8 @@
     force: true
     follow: false
   loop:
+    - src: .claude/settings.json
+      dest: .claude/settings.json
     - src: .config/aquaproj-aqua/aqua.yaml
       dest: .config/aquaproj-aqua/aqua.yaml
     - src: .config/fish/config.fish
