@@ -1,6 +1,9 @@
 - hosts: localhost
   connection: local
 
+  environment:
+    PATH: "{{ lookup('ansible.builtin.env', 'HOME') }}/.local/share/aquaproj-aqua/bin:{{ lookup('ansible.builtin.env', 'PATH') }}"
+
   tasks:
     - import_tasks: file.yml
       tags:
