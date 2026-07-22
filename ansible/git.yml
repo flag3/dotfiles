@@ -4,5 +4,18 @@
     repo: git@github.com:{{ item.repo }}.git
     dest: ~/{{ item.dest }}
   loop:
+    - repo: flag3/skills
+      dest: .agents/skills
     - repo: flag3/tmux-agent-session-manager
       dest: .config/tmux/plugins/tmux-agent-session-manager
+
+- name: link repositories
+  file:
+    state: link
+    src: ~/{{ item.src }}
+    dest: ~/{{ item.dest }}
+    force: true
+    follow: false
+  loop:
+    - src: .agents/skills
+      dest: .claude/skills

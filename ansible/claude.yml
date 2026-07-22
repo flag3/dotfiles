@@ -4,12 +4,35 @@
   loop:
     - affaan-m/everything-claude-code
     - anthropics/claude-plugins-official
+    - DietrichGebert/ponytail
+    - mattpocock/skills
     - openai/codex-plugin-cc
+    - phuryn/pm-skills
 
 - name: install claude plugins
   claude_plugins:
     name: "{{ item }}"
   loop:
+    - chrome-devtools-mcp@claude-plugins-official
     - codex@openai-codex
     - everything-claude-code@everything-claude-code
+    - figma@claude-plugins-official
+    - frontend-design@claude-plugins-official
+    - mattpocock-skills@mattpocock
     - notion@claude-plugins-official
+    - pm-ai-shipping@pm-skills
+    - pm-data-analytics@pm-skills
+    - pm-execution@pm-skills
+    - pm-go-to-market@pm-skills
+    - pm-market-research@pm-skills
+    - pm-marketing-growth@pm-skills
+    - pm-product-discovery@pm-skills
+    - pm-product-strategy@pm-skills
+    - pm-toolkit@pm-skills
+    - ponytail@ponytail
+    - skill-creator@claude-plugins-official
+
+- name: install external skills via skills CLI
+  command: npx -y skills@latest add mizchi/skills -g -y -a claude-code -s empirical-prompt-tuning
+  args:
+    creates: "{{ ansible_env.HOME }}/.claude/skills/empirical-prompt-tuning/SKILL.md"
