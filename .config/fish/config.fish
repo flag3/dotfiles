@@ -1,5 +1,6 @@
 set fish_greeting ""
 
+set -gx LANG en_US.UTF-8
 set -gx TERM xterm-256color
 
 # theme
@@ -51,10 +52,10 @@ end
 set -gx NPM_PKG_GITHUB_PAT "op://2442cozdn6slbp7xxuqldkydjm/kp5feviv6zrc5zcrqxwzbk7ukq/token"
 
 # python
-set PYTHON_INCLUDE $HOME/.venv/bin/activate.fish
-if test -r $PYTHON_INCLUDE
-    set VIRTUAL_ENV_DISABLE_PROMPT true
-    source $PYTHON_INCLUDE
+set PYTHON_VENV_PATH $HOME/.venv
+if test -d $PYTHON_VENV_PATH/bin
+    set -gx VIRTUAL_ENV $PYTHON_VENV_PATH
+    fish_add_path -g "$PYTHON_VENV_PATH/bin"
     alias pip "uv pip"
 end
 
