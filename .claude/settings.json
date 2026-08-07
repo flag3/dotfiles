@@ -1,0 +1,44 @@
+{
+  "attribution": {
+    "commit": "",
+    "pr": "",
+    "sessionUrl": false
+  },
+  "enabledPlugins": {
+    "chrome-devtools-mcp@claude-plugins-official": true,
+    "circleback@claude-plugins-official": true,
+    "codex@openai-codex": true,
+    "everything-claude-code@everything-claude-code": true,
+    "figma@claude-plugins-official": true,
+    "frontend-design@claude-plugins-official": true,
+    "mattpocock-skills@mattpocock": true,
+    "notion@claude-plugins-official": true,
+    "pm-ai-shipping@pm-skills": true,
+    "pm-data-analytics@pm-skills": true,
+    "pm-execution@pm-skills": true,
+    "pm-go-to-market@pm-skills": true,
+    "pm-market-research@pm-skills": true,
+    "pm-marketing-growth@pm-skills": true,
+    "pm-product-discovery@pm-skills": true,
+    "pm-product-strategy@pm-skills": true,
+    "pm-toolkit@pm-skills": true,
+    "ponytail@ponytail": true,
+    "skill-creator@claude-plugins-official": true
+  },
+  "extraKnownMarketplaces": {
+    "pm-skills": {
+      "source": {
+        "source": "github",
+        "repo": "phuryn/pm-skills"
+      }
+    },
+    "mattpocock": {
+      "source": {
+        "source": "github",
+        "repo": "mattpocock/skills"
+      }
+    }
+  },
+  "inputNeededNotifEnabled": true,
+  "agentPushNotifEnabled": true
+}

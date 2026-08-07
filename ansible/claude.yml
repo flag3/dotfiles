@@ -4,15 +4,31 @@
   loop:
     - affaan-m/everything-claude-code
     - anthropics/claude-plugins-official
+    - DietrichGebert/ponytail
+    - mattpocock/skills
     - openai/codex-plugin-cc
+    - phuryn/pm-skills
 
 - name: install claude plugins
   claude_plugins:
     name: "{{ item }}"
   loop:
+    - chrome-devtools-mcp@claude-plugins-official
+    - circleback@claude-plugins-official
     - codex@openai-codex
     - everything-claude-code@everything-claude-code
+    - figma@claude-plugins-official
+    - frontend-design@claude-plugins-official
+    - mattpocock-skills@mattpocock
     - notion@claude-plugins-official
-
-- name: add Claude Code session status hooks
-  claude_session_status_hooks:
+    - pm-ai-shipping@pm-skills
+    - pm-data-analytics@pm-skills
+    - pm-execution@pm-skills
+    - pm-go-to-market@pm-skills
+    - pm-market-research@pm-skills
+    - pm-marketing-growth@pm-skills
+    - pm-product-discovery@pm-skills
+    - pm-product-strategy@pm-skills
+    - pm-toolkit@pm-skills
+    - ponytail@ponytail
+    - skill-creator@claude-plugins-official
