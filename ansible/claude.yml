@@ -32,3 +32,7 @@
     - pm-toolkit@pm-skills
     - ponytail@ponytail
     - skill-creator@claude-plugins-official
+
+- name: install external skills via skills CLI
+  command: npx -y skills@latest add mizchi/skills -g -y -a claude-code -s empirical-prompt-tuning
+  changed_when: false

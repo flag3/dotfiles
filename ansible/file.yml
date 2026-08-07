@@ -4,6 +4,7 @@
     path: ~/{{ item }}
     mode: 0700
   loop:
+    - .agents
     - .claude
     - .codex
     - .config/aquaproj-aqua
