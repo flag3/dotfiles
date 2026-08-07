@@ -13,5 +13,5 @@ if [ ! -x $AQUA_BIN ]; then
 fi
 
 $AQUA_BIN -c ../.config/aquaproj-aqua/aqua.yaml exec -- \
-  uvx --with ansible --from ansible-core -- \
+  uvx --managed-python --with ansible --from ansible-core -- \
   ansible-playbook playbook.yml "$@"

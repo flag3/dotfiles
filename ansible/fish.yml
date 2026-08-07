@@ -25,5 +25,7 @@
 
 - name: change login shell
   become: yes
-  shell: chsh -s {{ fish_path.stdout }} {{ ansible_facts['user_id'] }}
+  user:
+    name: "{{ ansible_facts['user_id'] }}"
+    shell: "{{ fish_path.stdout }}"
   when: fish_path.rc == 0
