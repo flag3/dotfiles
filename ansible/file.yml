@@ -30,10 +30,6 @@
       dest: .config/fish/config.fish
     - src: .config/fish/conf.d/tide.fish
       dest: .config/fish/conf.d/tide.fish
-    - src: .config/fish/functions/fish_user_key_bindings.fish
-      dest: .config/fish/functions/fish_user_key_bindings.fish
-    - src: .config/fish/functions/fzf_change_directory.fish
-      dest: .config/fish/functions/fzf_change_directory.fish
     - src: .config/ghostty/config
       dest: .config/ghostty/config
     - src: .config/hub
@@ -58,12 +54,20 @@
       dest: .latexmkrc
     - src: .npmrc
       dest: .npmrc
-    - src: .oxfmtrc.json
-      dest: .oxfmtrc.json
     - src: .scripts/ide
       dest: bin/ide
     - src: .ssh/config
       dest: .ssh/config
+
+- name: link fish functions
+  file:
+    state: link
+    src: "{{ item }}"
+    dest: ~/.config/fish/functions/{{ item | basename }}
+    force: true
+    follow: false
+  with_fileglob:
+    - "{{ playbook_dir }}/../.config/fish/functions/*"
 
 - name: touch file
   file:
