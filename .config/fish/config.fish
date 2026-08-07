@@ -51,6 +51,12 @@ end
 
 set -gx NPM_PKG_GITHUB_PAT "op://2442cozdn6slbp7xxuqldkydjm/kp5feviv6zrc5zcrqxwzbk7ukq/token"
 
+# rust
+set RUST_INCLUDE $HOME/.cargo/env.fish
+if test -r $RUST_INCLUDE
+    source $RUST_INCLUDE
+end
+
 # python
 set PYTHON_VENV_PATH $HOME/.venv
 if test -d $PYTHON_VENV_PATH/bin

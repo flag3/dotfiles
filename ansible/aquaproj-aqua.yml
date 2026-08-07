@@ -4,3 +4,8 @@
     chdir: ~/.config/aquaproj-aqua
   register: result
   changed_when: result.stderr_lines | length > 0
+
+- name: install rust toolchain via rustup
+  command: rustup-init -y --no-modify-path --default-toolchain stable
+  args:
+    creates: ~/.cargo/bin/cargo
