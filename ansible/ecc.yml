@@ -32,9 +32,9 @@
   codex_mcp_env:
   when: result.changed
 
-- name: restore hooksPath to tilde notation
+- name: restore hooksPath after install.sh points it at ECC's hooks
   lineinfile:
     path: "~/.gitconfig"
     regexp: '^\s*hooksPath\s*='
-    line: "\thooksPath = ~/.codex/git-hooks"
+    line: "\thooksPath = ~/.config/git/hooks"
   when: result.changed

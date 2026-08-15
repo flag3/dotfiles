@@ -1,0 +1,12 @@
+{{- $email := promptStringOnce . "email" "Email address" -}}
+{{- $name := promptStringOnce . "name" "Full name" -}}
+{{- $githubUser := promptStringOnce . "githubUser" "GitHub username" -}}
+{{- $signingkey := promptStringOnce . "signingkey" "Git SSH signing key" -}}
+
+sourceDir = {{ .chezmoi.workingTree | quote }}
+
+[data]
+    email = {{ $email | quote }}
+    name = {{ $name | quote }}
+    githubUser = {{ $githubUser | quote }}
+    signingkey = {{ $signingkey | quote }}

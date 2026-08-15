@@ -1,3 +1,9 @@
+- name: create agents directory
+  file:
+    state: directory
+    path: ~/.agents
+    mode: 0700
+
 - name: clone/pull repositories
   ignore_errors: true
   git:

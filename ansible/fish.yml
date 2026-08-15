@@ -3,6 +3,12 @@
     state: directory
     path: ~/Library/Mobile Documents/com~apple~CloudDocs/fish
 
+- name: create local share directory
+  file:
+    state: directory
+    path: ~/.local/share
+    mode: 0700
+
 - name: link data dir
   file:
     state: link

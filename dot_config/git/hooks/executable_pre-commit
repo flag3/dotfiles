@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# core.hooksPath (see dot_gitconfig.tmpl) points here rather than at ECC's
+# hook directory, because git runs exactly one hooks directory. Chain both:
+# ECC installs its own hooks into ~/.codex/git-hooks and rewrites hooksPath
+# to match, which ansible/ecc.yml points back here after every ECC update.
+
+ecc_hook="$HOME/.codex/git-hooks/pre-commit"
+if [[ -x "$ecc_hook" ]]; then
+  "$ecc_hook"
+fi
+
+root="$(git rev-parse --show-toplevel 2>/dev/null || true)"
+if [[ -n "$root" && -f "$root/.pre-commit-config.yaml" ]] && command -v pre-commit >/dev/null 2>&1; then
+  exec pre-commit run --hook-stage pre-commit
+fi

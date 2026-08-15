@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# See pre-commit in this directory. ECC's pre-push reads the pushed refs from
+# stdin, so hand the whole invocation over with exec rather than wrapping it.
+
+ecc_hook="$HOME/.codex/git-hooks/pre-push"
+if [[ -x "$ecc_hook" ]]; then
+  exec "$ecc_hook" "$@"
+fi
