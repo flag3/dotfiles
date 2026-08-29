@@ -1,5 +1,5 @@
 function _fzf_change_directory
-    fzf | perl -pe 's/([ ()])/\\\\$1/g' | read foo
+    fzf --layout reverse | perl -pe 's/([ ()])/\\\\$1/g' | read foo
     if [ $foo ]
         builtin cd $foo
         commandline -r ''
@@ -13,6 +13,12 @@ function fzf_change_directory
     begin
         echo $HOME/.config
         find $(ghq root) -maxdepth 4 -type d -name .git | sed 's/\/\.git//'
+        if type -q gwq
+            set -l worktree_basedir (gwq config get worktree.basedir | string replace '~' $HOME)
+            if test -d $worktree_basedir
+                fd . $worktree_basedir -t d --max-depth 3 --min-depth 3
+            end
+        end
         ls -ad */ | perl -pe "s#^#$PWD/#" | grep -v \.git
         ls -ad $HOME/Developments/*/* | grep -v \.git
     end | sed -e 's/\/$//' | awk '!a[$0]++' | _fzf_change_directory $argv

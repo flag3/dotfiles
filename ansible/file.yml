@@ -11,6 +11,8 @@
     - .config/fish/conf.d
     - .config/fish/functions
     - .config/ghostty
+    - .config/git
+    - .config/gwq
     - .config/karabiner/assets
     - .config/nvim
     - .local/share
@@ -32,12 +34,16 @@
       dest: .config/aquaproj-aqua/aqua.yaml
     - src: .config/fish/config.fish
       dest: .config/fish/config.fish
-    - src: .config/fish/conf.d/tide.fish
-      dest: .config/fish/conf.d/tide.fish
     - src: .config/ghostty/config
       dest: .config/ghostty/config
-    - src: .config/hub
-      dest: .config/hub
+    - src: .config/git/aliases.gitconfig
+      dest: .config/git/aliases.gitconfig
+    - src: .config/git/delta.gitconfig
+      dest: .config/git/delta.gitconfig
+    - src: .config/git/ghq.gitconfig
+      dest: .config/git/ghq.gitconfig
+    - src: .config/gwq/config.toml
+      dest: .config/gwq/config.toml
     - src: .config/karabiner
       dest: .config/karabiner/assets/complex_modifications
     - src: .config/lazygit/config.yml
