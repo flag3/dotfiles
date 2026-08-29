@@ -39,6 +39,7 @@
       }
     }
   },
+  "theme": "light",
   "inputNeededNotifEnabled": true,
   "agentPushNotifEnabled": true
 }
