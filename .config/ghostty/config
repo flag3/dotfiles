@@ -1,8 +1,9 @@
 theme = "iTerm2 Solarized Light"
 
-background-opacity = 0.9
+desktop-notifications = true
+
+background-opacity = 0.85
 background-blur-radius = 20
-background = #fdf6e3
 
 font-family = "PlemolJP Console NF"
 
@@ -12,3 +13,10 @@ cursor-style-blink = true
 macos-option-as-alt = left
 keybind = alt+left=unbind
 keybind = alt+right=unbind
+
+window-padding-x = 8
+window-padding-y = 8
+
+bell-features = no-system
+
+shell-integration-features = ssh-env,ssh-terminfo
