@@ -17,7 +17,6 @@
     - danhper/fish-ssh-agent
     - ilancosman/tide
     - jethrokuan/z
-    - jorgebucaran/nvm.fish
     - patrickf1/fzf.fish
 
 - name: update fisher plugins
