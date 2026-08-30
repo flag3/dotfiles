@@ -1,304 +1,154 @@
-return {
-	{
-		enabled = false,
-		"folke/flash.nvim",
-		---@type Flash.Config
-		opts = {
-			search = {
-				forward = true,
-				multi_window = false,
-				wrap = false,
-				incremental = true,
+-- Completion
+---@module 'blink.cmp'
+---@type blink.cmp.Config
+require("blink.cmp").setup({
+	snippets = {
+		preset = "default",
+	},
+	completion = {
+		accept = {
+			-- experimental auto-brackets support
+			auto_brackets = {
+				enabled = true,
 			},
+		},
+		menu = {
+			border = "none",
+			draw = {
+				treesitter = { "lsp" },
+			},
+		},
+		documentation = {
+			auto_show = true,
+			auto_show_delay_ms = 200,
+		},
+		ghost_text = {
+			-- TODO: Specify AI completion
+			enabled = vim.g.ai_cmp,
 		},
 	},
 
-	{
-		"brenoprata10/nvim-highlight-colors",
-		event = "BufReadPre",
-		opts = {
-			render = "background",
-			enable_hex = true,
-			enable_short_hex = true,
-			enable_rgb = true,
-			enable_hsl = true,
-			enable_hsl_without_function = true,
-			enable_ansi = true,
-			enable_var_usage = true,
-			enable_tailwind = true,
+	-- sources = {
+	--   -- adding any nvim-cmp sources here will enable them
+	--   -- with blink.compat
+	--   compat = {},
+	--   default = { "lsp", "path", "snippets", "buffer" },
+	-- },
+
+	cmdline = {
+		enabled = true,
+		keymap = {
+			preset = "cmdline",
+			["<Right>"] = false,
+			["<Left>"] = false,
+		},
+		completion = {
+			list = { selection = { preselect = false } },
+			menu = {
+				auto_show = function(ctx)
+					return vim.fn.getcmdtype() == ":"
+				end,
+			},
+			ghost_text = { enabled = true },
 		},
 	},
 
-	{
-		"dinhhuy258/git.nvim",
-		event = "BufReadPre",
-		opts = {
-			keymaps = {
-				-- Open blame window
-				blame = "<Leader>gb",
-				-- Open file/folder in git repository
-				browse = "<Leader>go",
-			},
-		},
+	keymap = {
+		preset = "enter",
+		["c-y"] = { "select_and_accept" },
 	},
 
-	{
-		"esmuellert/codediff.nvim",
-		cmd = "CodeDiff",
-		keys = {
-			{ "<leader>gD", "<cmd>CodeDiff<cr>", desc = "CodeDiff Status" },
-			{ "<leader>gd", "<cmd>CodeDiff file HEAD<cr>", desc = "CodeDiff Current File" },
-			{ "<leader>gh", "<cmd>CodeDiff history<cr>", desc = "CodeDiff History" },
-		},
-		opts = {
-			diff = {
-				layout = "side-by-side",
-			},
+	appearance = {
+		kind_icons = Dotfiles.icons.kinds,
+	},
+})
+
+require("mini.pairs").setup({
+	modes = { insert = true, command = true, terminal = false },
+	-- skip autopair when next character is one of these
+	skip_next = [=[[%w%%%'%[%"%.%`%$]]=],
+	-- skip autopair when the cursor is inside these treesitter nodes
+	skip_ts = { "string" },
+	-- skip autopair when next character is closing pair
+	-- and there are more closing pairs than opening pairs
+	skip_unbalanced = true,
+	-- better deal with markdown code blocks
+	markdown = true,
+})
+
+require("mini.diff").setup({
+	view = {
+		-- show whole reference part above whole buffer part, as in `git diff`
+		overlay_style = "hunk",
+	},
+	mappings = {
+		-- same keymaps as codediff.nvim
+		goto_next = "]c",
+		goto_prev = "[c",
+	},
+})
+-- Comments
+require("todo-comments").setup()
+
+-- Git integration
+require("gitsigns").setup()
+require("gitlinker").setup()
+
+-- Formatting
+local oxfmtFormatter = { "oxfmt", "prettierd", "prettier", stop_after_first = true }
+require("conform").setup({
+	default_format_opts = {
+		timeout_ms = 3000,
+		async = false,
+		quiet = false,
+		lsp_format = "fallback",
+	},
+	formatters_by_ft = {
+		javascript = oxfmtFormatter,
+		typescript = oxfmtFormatter,
+		javascriptreact = oxfmtFormatter,
+		typescriptreact = oxfmtFormatter,
+		json = oxfmtFormatter,
+		css = oxfmtFormatter,
+		html = oxfmtFormatter,
+		markdown = oxfmtFormatter,
+		yaml = oxfmtFormatter,
+		less = oxfmtFormatter,
+		scss = oxfmtFormatter,
+		["markdown.mdx"] = oxfmtFormatter,
+		lua = { "stylua" },
+		sh = { "shfmt" },
+		fish = { "fish_indent" },
+	},
+	formatters = {
+		oxfmt = {
+			-- Treat oxfmt as available only when the project has an oxfmt config
+			-- (.oxfmtrc.json / .oxfmtrc.jsonc). Without it, oxfmt is skipped and the
+			-- formatter list falls back to prettier.
+			require_cwd = true,
 		},
 	},
+	format_on_save = function(bufnr)
+		if vim.b[bufnr].disable_autoformat then
+			return
+		end
+		return {
+			timeout_ms = 500,
+			lsp_fallback = true,
+		}
+	end,
+})
 
-	{
-		"nvim-telescope/telescope.nvim",
-		dependencies = {
-			{
-				"nvim-telescope/telescope-fzf-native.nvim",
-				build = "make",
-			},
-			"nvim-telescope/telescope-file-browser.nvim",
-			"nvim-telescope/telescope-bibtex.nvim",
-		},
-		keys = {
-			{
-				"<leader>fP",
-				function()
-					require("telescope.builtin").find_files({
-						cwd = require("lazy.core.config").options.root,
-					})
-				end,
-				desc = "Find Plugin File",
-			},
-			{
-				";f",
-				function()
-					local builtin = require("telescope.builtin")
-					builtin.find_files({
-						no_ignore = false,
-						hidden = true,
-					})
-				end,
-				desc = "Lists files in your current working directory, respects .gitignore",
-			},
-			{
-				";r",
-				function()
-					local builtin = require("telescope.builtin")
-					builtin.live_grep({
-						additional_args = { "--hidden" },
-					})
-				end,
-				desc = "Search for a string in your current working directory and get results live as you type, respects .gitignore",
-			},
-			{
-				"\\\\",
-				function()
-					local builtin = require("telescope.builtin")
-					builtin.buffers()
-				end,
-				desc = "Lists open buffers",
-			},
-			{
-				";t",
-				function()
-					local builtin = require("telescope.builtin")
-					builtin.help_tags()
-				end,
-				desc = "Lists available help tags and opens a new window with the relevant help info on <cr>",
-			},
-			{
-				";;",
-				function()
-					local builtin = require("telescope.builtin")
-					builtin.resume()
-				end,
-				desc = "Resume the previous telescope picker",
-			},
-			{
-				";e",
-				function()
-					local builtin = require("telescope.builtin")
-					builtin.diagnostics()
-				end,
-				desc = "Lists Diagnostics for all open buffers or a specific buffer",
-			},
-			{
-				";s",
-				function()
-					local builtin = require("telescope.builtin")
-					builtin.treesitter()
-				end,
-				desc = "Lists Function names, variables, from Treesitter",
-			},
-			{
-				";c",
-				function()
-					local builtin = require("telescope.builtin")
-					builtin.lsp_incoming_calls()
-				end,
-				desc = "Lists LSP incoming calls for word under the cursor",
-			},
-			{
-				";b",
-				function()
-					require("telescope").extensions.bibtex.bibtex()
-				end,
-				desc = "Lists citations from .bib file",
-			},
-			{
-				"sf",
-				function()
-					local telescope = require("telescope")
-
-					local function telescope_buffer_dir()
-						return vim.fn.expand("%:p:h")
-					end
-
-					telescope.extensions.file_browser.file_browser({
-						path = "%:p:h",
-						cwd = telescope_buffer_dir(),
-						respect_gitignore = false,
-						hidden = true,
-						grouped = true,
-						previewer = false,
-						initial_mode = "normal",
-						layout_config = { height = 40 },
-					})
-				end,
-				desc = "Open File Browser with the path of the current buffer",
-			},
-		},
-		config = function(_, opts)
-			local telescope = require("telescope")
-			local actions = require("telescope.actions")
-			local fb_actions = require("telescope").extensions.file_browser.actions
-
-			opts.defaults = vim.tbl_deep_extend("force", opts.defaults or {}, {
-				wrap_results = true,
-				layout_strategy = "horizontal",
-				layout_config = { prompt_position = "top" },
-				sorting_strategy = "ascending",
-				winblend = 0,
-				mappings = {
-					n = {},
-				},
-			})
-			opts.pickers = {
-				diagnostics = {
-					theme = "ivy",
-					initial_mode = "normal",
-					layout_config = {
-						preview_cutoff = 9999,
-					},
-				},
-			}
-			opts.extensions = {
-				file_browser = {
-					theme = "dropdown",
-					-- disables netrw and use telescope-file-browser in its place
-					hijack_netrw = true,
-					mappings = {
-						-- your custom insert mode mappings
-						["n"] = {
-							-- your custom normal mode mappings
-							["N"] = fb_actions.create,
-							["h"] = fb_actions.goto_parent_dir,
-							["/"] = function()
-								vim.cmd("startinsert")
-							end,
-							["<C-u>"] = function(prompt_bufnr)
-								for i = 1, 10 do
-									actions.move_selection_previous(prompt_bufnr)
-								end
-							end,
-							["<C-d>"] = function(prompt_bufnr)
-								for i = 1, 10 do
-									actions.move_selection_next(prompt_bufnr)
-								end
-							end,
-							["<PageUp>"] = actions.preview_scrolling_up,
-							["<PageDown>"] = actions.preview_scrolling_down,
-						},
-					},
-				},
-				bibtex = {
-					depth = 1,
-					global_files = { "~/Zotero/better-bibtex/Zotero.bib" },
-					-- Path to global bibliographies (placed outside of the project)
-					search_keys = { "author", "year", "title" },
-					-- Define the search keys to use in the picker
-					citation_format = "{{author}} ({{year}}), {{title}}.",
-					-- Template for the formatted citation
-					citation_trim_firstname = true,
-					-- Only use initials for the authors first name
-					citation_max_auth = 2,
-					-- Max number of authors to write in the formatted citation
-					-- following authors will be replaced by "et al."
-					custom_formats = {
-						{ id = "citet", cite_maker = "\\citet{%s}" },
-					},
-					-- Custom format for citation label
-					format = "citet",
-					-- Format to use for citation label.
-					-- Try to match the filetype by default, or use 'plain'
-					context = true,
-					-- Context awareness disabled by default
-					context_fallback = true,
-					-- Fallback to global/directory .bib files if context not found
-					-- This setting has no effect if context = false
-					wrap = false,
-					-- Wrapping in the preview window is disabled by default
-				},
-			}
-			telescope.setup(opts)
-			require("telescope").load_extension("fzf")
-			require("telescope").load_extension("file_browser")
-			require("telescope").load_extension("bibtex")
-		end,
-	},
-
-	{
-		"kazhala/close-buffers.nvim",
-		event = "VeryLazy",
-		keys = {
-			{
-				"<leader>th",
-				function()
-					require("close_buffers").delete({ type = "hidden" })
-				end,
-				"Close Hidden Buffers",
-			},
-			{
-				"<leader>tu",
-				function()
-					require("close_buffers").delete({ type = "nameless" })
-				end,
-				"Close Nameless Buffers",
-			},
-		},
-	},
-
-	{
-		"saghen/blink.cmp",
-		opts = {
-			completion = {
-				menu = {
-					winblend = vim.o.pumblend,
-				},
-			},
-			signature = {
-				window = {
-					winblend = vim.o.pumblend,
-				},
-			},
-		},
-	},
-}
+-- Colors
+vim.lsp.document_color.enable(false)
+require("nvim-highlight-colors").setup({
+	render = "background",
+	enable_hex = true,
+	enable_short_hex = true,
+	enable_rgb = true,
+	enable_hsl = true,
+	enable_hsl_without_function = true,
+	enable_ansi = true,
+	enable_var_usage = true,
+	enable_tailwind = false,
+})

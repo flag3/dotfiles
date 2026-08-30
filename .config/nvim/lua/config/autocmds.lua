@@ -1,18 +1,37 @@
--- Autocmds are automatically loaded on the VeryLazy event
--- Default autocmds that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/autocmds.lua
--- Add any additional autocmds here
+-- Basic autocommands
+local augroup = vim.api.nvim_create_augroup("UserConfig", {})
 
 -- Turn off paste mode when leaving insert
 vim.api.nvim_create_autocmd("InsertLeave", {
+	group = augroup,
 	pattern = "*",
 	command = "set nopaste",
 })
 
--- Disable the concealing in some file formats
--- The default conceallevel is 3 in LazyVim
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = { "json", "jsonc", "markdown", "tex" },
+-- Highlight the current line on only the active buffer
+local cursorline_group = vim.api.nvim_create_augroup("CursorLine", { clear = true })
+vim.api.nvim_create_autocmd({ "VimEnter", "WinEnter", "BufWinEnter" }, {
+	group = cursorline_group,
+	pattern = "*",
+	command = "setlocal cursorline",
+})
+vim.api.nvim_create_autocmd("WinLeave", {
+	group = cursorline_group,
+	pattern = "*",
+	command = "setlocal nocursorline",
+})
+
+-- Highlight yanked text
+vim.api.nvim_create_autocmd("TextYankPost", {
+	group = augroup,
 	callback = function()
-		vim.opt.conceallevel = 0
+		vim.highlight.on_yank()
 	end,
+})
+
+-- Custom filetypes
+vim.filetype.add({
+	extension = {
+		mjml = "html",
+	},
 })
