@@ -1,135 +1,101 @@
-return {
-	-- messages, cmdline and the popupmenu
-	{
-		"folke/noice.nvim",
-		opts = function(_, opts)
-			table.insert(opts.routes, {
-				filter = {
-					event = "notify",
-					find = "No information available",
-				},
-				opts = { skip = true },
-			})
-			local focused = true
-			vim.api.nvim_create_autocmd("FocusGained", {
-				callback = function()
-					focused = true
-				end,
-			})
-			vim.api.nvim_create_autocmd("FocusLost", {
-				callback = function()
-					focused = false
-				end,
-			})
-			table.insert(opts.routes, 1, {
-				filter = {
-					cond = function()
-						return not focused
-					end,
-				},
-				view = "notify_send",
-				opts = { stop = false },
-			})
+local icons = Dotfiles.icons
+local lualine_utils = require("utils.lualine")
+local lazygit_utils = require("utils.lazygit")
 
-			opts.commands = {
-				all = {
-					-- options for the message history that you get with `:Noice`
-					view = "split",
-					opts = { enter = true, format = "details" },
-					filter = {},
-				},
-			}
-
-			vim.api.nvim_create_autocmd("FileType", {
-				pattern = "markdown",
-				callback = function(event)
-					vim.schedule(function()
-						require("noice.text.markdown").keys(event.buf)
-					end)
-				end,
-			})
-
-			opts.presets.lsp_doc_border = true
-		end,
+require("solarized-osaka").setup({
+	style = "vivid",
+	transparent = true,
+	-- styles = {
+	--   sidebars = "transparent",
+	--   floats = "transparent",
+	-- },
+	sidebars = {
+		"qf",
+		"vista_kind",
+		"terminal",
+		"spectre_panel",
+		"startuptime",
+		"Outline",
 	},
+})
+vim.cmd([[colorscheme solarized-osaka]])
 
-	{
-		"rcarriga/nvim-notify",
-		opts = {
-			timeout = 5000,
+require("mini.icons").setup()
+require("mini.icons").mock_nvim_web_devicons()
+
+-- Custom tabline setup
+require("utils.tabline").setup()
+vim.o.showtabline = 1
+vim.o.tabline = "%!v:lua.require('utils.tabline').render()"
+
+require("snacks").setup({
+	indent = { enabled = true },
+	scroll = { enabled = false },
+	picker = {
+		enabled = true,
+		sources = {
+			files = { hidden = true },
+			grep = { hidden = true },
 		},
 	},
-
-	{
-		"MeanderingProgrammer/render-markdown.nvim",
-		enabled = false,
-	},
-
-	{
-		"snacks.nvim",
-		opts = {
-			scroll = { enabled = false },
+	notifier = { enabled = true },
+	statuscolumn = { enabled = true },
+	words = { enabled = true },
+	lazygit = {
+		enabled = true,
+		configure = true, -- auto-sets nvim-remote preset & syncs theme
+		config = {
+			-- Open files selected in lazygit in the pane it was launched from,
+			-- instead of the nvim-remote preset's new tab. See utils/lazygit.lua.
+			os = {
+				edit = lazygit_utils.edit_command(),
+				editAtLine = lazygit_utils.edit_command({ at_line = true }),
+			},
 		},
-		keys = {},
-	},
-
-	-- buffer line
-	{
-		"akinsho/bufferline.nvim",
-		event = "VeryLazy",
-		keys = {
-			{ "<Tab>", "<Cmd>BufferLineCycleNext<CR>", desc = "Next tab" },
-			{ "<S-Tab>", "<Cmd>BufferLineCyclePrev<CR>", desc = "Prev tab" },
+		theme = {
+			activeBorderColor = { fg = "WarningMsg", bold = true },
 		},
-		opts = {
-			options = {
-				mode = "tabs",
-				-- separator_style = "slant",
-				show_buffer_close_icons = false,
-				show_close_icon = false,
+	},
+})
+
+require("tiny-cmdline").setup({
+	position = {
+		y = "20%",
+	},
+})
+
+require("lualine").setup({
+	options = {
+		theme = "auto",
+		globalstatus = true,
+		disabled_filetypes = { statusline = { "dashboard", "alpha", "ministarter", "snacks_dashboard" } },
+		refresh = {
+			events = {
+				"WinEnter",
+				"BufEnter",
+				"BufWritePost",
+				"SessionLoadPost",
+				"FileChangedShellPost",
+				"VimResized",
+				"Filetype",
+				"CursorMoved",
+				"CursorMovedI",
+				"ModeChanged",
+				-- Macro
+				"RecordingEnter",
+				"RecordingLeave",
 			},
 		},
 	},
+	sections = {
+		lualine_a = { "mode" },
+		lualine_b = { "branch" },
 
-	-- filename
-	{
-		"b0o/incline.nvim",
-		dependencies = { "craftzdog/solarized-osaka.nvim" },
-		event = "BufReadPre",
-		priority = 1200,
-		config = function()
-			local colors = require("solarized-osaka.colors").setup()
-			require("incline").setup({
-				highlight = {
-					groups = {
-						InclineNormal = { guibg = colors.magenta500, guifg = colors.base4 },
-						InclineNormalNC = { guifg = colors.violet500, guibg = colors.base3 },
-					},
-				},
-				window = { margin = { vertical = 0, horizontal = 1 } },
-				hide = {
-					cursorline = true,
-				},
-				render = function(props)
-					local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ":t")
-					if vim.bo[props.buf].modified then
-						filename = "[+] " .. filename
-					end
-
-					local icon, color = require("nvim-web-devicons").get_icon_color(filename)
-					return { { icon, guifg = color }, { " " }, { filename } }
-				end,
-			})
-		end,
-	},
-
-	-- statusline
-	{
-		"nvim-lualine/lualine.nvim",
-		opts = function(_, opts)
-			local LazyVim = require("lazyvim.util")
-			opts.sections.lualine_c[4] = {
-				LazyVim.lualine.pretty_path({
+		lualine_c = {
+			lualine_utils.root_dir(),
+			{ "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
+			{
+				lualine_utils.pretty_path({
 					length = 0,
 					relative = "cwd",
 					modified_hl = "MatchParen",
@@ -138,38 +104,96 @@ return {
 					modified_sign = "",
 					readonly_icon = " 󰌾 ",
 				}),
-			}
-		end,
-	},
-
-	{
-		"folke/zen-mode.nvim",
-		cmd = "ZenMode",
-		opts = {
-			plugins = {
-				gitsigns = true,
-				tmux = true,
-				kitty = { enabled = false, font = "+2" },
 			},
 		},
-		keys = { { "<leader>z", "<cmd>ZenMode<cr>", desc = "Zen Mode" } },
-	},
-
-	{
-		"folke/snacks.nvim",
-		opts = {
-			dashboard = {
-				preset = {
-					header = [[
-    ██╗      █████╗ ███████╗██╗   ██╗███████╗██╗      █████╗  ██████╗ ██████╗ 
-    ██║     ██╔══██╗╚══███╔╝╚██╗ ██╔╝██╔════╝██║     ██╔══██╗██╔════╝ ╚════██╗
-    ██║     ███████║  ███╔╝  ╚████╔╝ █████╗  ██║     ███████║██║  ███╗ █████╔╝
-    ██║     ██╔══██║ ███╔╝    ╚██╔╝  ██╔══╝  ██║     ██╔══██║██║   ██║ ╚═══██╗
-    ███████╗██║  ██║███████╗   ██║   ██║     ███████╗██║  ██║╚██████╔╝██████╔╝
-    ╚══════╝╚═╝  ╚═╝╚══════╝   ╚═╝   ╚═╝     ╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚═════╝
-   ]],
+		lualine_x = {
+			lualine_utils.macro_recording(),
+			{
+				"diagnostics",
+				symbols = {
+					error = icons.diagnostics.Error,
+					warn = icons.diagnostics.Warn,
+					info = icons.diagnostics.Info,
+					hint = icons.diagnostics.Hint,
 				},
 			},
+			{
+				"diff",
+				symbols = {
+					added = icons.git.added,
+					modified = icons.git.modified,
+					removed = icons.git.removed,
+				},
+				source = function()
+					local gitsigns = vim.b.gitsigns_status_dict
+					if gitsigns then
+						return {
+							added = gitsigns.added,
+							modified = gitsigns.changed,
+							removed = gitsigns.removed,
+						}
+					end
+				end,
+			},
+		},
+		lualine_y = {
+			{ "progress", separator = " ", padding = { left = 1, right = 1 } },
+		},
+		lualine_z = {
+			{ "location", padding = { left = 1, right = 1 } },
 		},
 	},
-}
+})
+
+require("incline").setup({
+	window = {
+		margin = { vertical = 0, horizontal = 1 },
+		zindex = 10,
+	},
+	hide = {
+		cursorline = "smart",
+	},
+	render = function(props)
+		local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ":t")
+		if vim.bo[props.buf].modified then
+			filename = "[+] " .. filename
+		end
+
+		local icon, hl = MiniIcons.get("file", filename)
+		return { { icon, group = hl }, { " " }, { filename } }
+	end,
+})
+
+require("codediff").setup({
+	explorer = {
+		auto_open_on_cursor = true,
+		view_mode = "tree", -- "list" or "tree"
+	},
+	keymaps = {
+		view = {
+			toggle_stage = "<Space>", -- Stage/unstage current file
+		},
+	},
+})
+
+vim.diagnostic.config({
+	underline = true,
+	update_in_insert = false,
+	virtual_text = {
+		spacing = 4,
+		source = "if_many",
+		prefix = "●",
+		format = function(diagnostic)
+			return string.format("%s (%s: %s)", diagnostic.message, diagnostic.source, diagnostic.code)
+		end,
+	},
+	severity_sort = true,
+	signs = {
+		text = {
+			[vim.diagnostic.severity.ERROR] = icons.diagnostics.Error,
+			[vim.diagnostic.severity.WARN] = icons.diagnostics.Warn,
+			[vim.diagnostic.severity.HINT] = icons.diagnostics.Hint,
+			[vim.diagnostic.severity.INFO] = icons.diagnostics.Info,
+		},
+	},
+})
