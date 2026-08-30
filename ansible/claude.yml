@@ -2,7 +2,7 @@
   claude_plugin_marketplaces:
     name: "{{ item }}"
   loop:
-    - affaan-m/everything-claude-code
+    - https://github.com/affaan-m/ECC.git
     - anthropics/claude-plugins-official
     - DietrichGebert/ponytail
     - mattpocock/skills
@@ -16,7 +16,7 @@
     - chrome-devtools-mcp@claude-plugins-official
     - circleback@claude-plugins-official
     - codex@openai-codex
-    - everything-claude-code@everything-claude-code
+    - ecc@ecc
     - figma@claude-plugins-official
     - frontend-design@claude-plugins-official
     - mattpocock-skills@mattpocock

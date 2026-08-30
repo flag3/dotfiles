@@ -1,2 +1,18 @@
+- name: add codex plugin marketplaces
+  codex_plugin_marketplaces:
+    name: "{{ item }}"
+  loop:
+    - affaan-m/ECC
+    - DietrichGebert/ponytail
+
+- name: install codex plugins
+  codex_plugins:
+    name: "{{ item }}"
+  loop:
+    - ecc@ecc
+    - figma@openai-curated-remote
+    - notion@openai-curated-remote
+    - ponytail@ponytail
+
 - name: add Codex session status hooks
   codex_session_status_hooks:
