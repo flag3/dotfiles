@@ -1,38 +1,26 @@
 *.o
-\#*#
-*#
-.#*
 .*~
 *~
 .DS_Store
 *.sw[po]
-tags
-TAGS
-.svn
 *.dSYM
 *.log
 *.dvi
 *.aux
 *.elc
-.zshrc.local
 .python-version
-samples
 .netrwhist
 .bundle
 /vendor/bundle
 Gemfile.lock
 node_modules
-bower_components
-fishd.*
 
-# Vim
+.env*
+*.bak
+
+# Vim/Neovim
 Session.vim
-.vim/bundle/
-.vimrc_sample
-.vim/ftdetect/Dockerfile.vim
-.vim/syntax/Dockerfile.vim
-.vim/snippets/
-.luarc.json
+vimsession
 
 # Xcode
 build/
@@ -58,24 +46,9 @@ Pods/
 
 # Fish local config
 .config/fish/config-local.fish
-.config/fish/fish_variables.x86_64
-
-# Karabiner
-.config/karabiner/automatic_backups
 
 # Tmux
 .config/tmux/plugins
 
-# Lazygit
-.config/lazygit/state.yml
-.config/nvim/lazy-lock.json
-.config/nvim/lazyvim.json
-
-# Zed
-.config/zed/.tmp*
-.config/zed/embeddings
-.config/zed/prompts
-
-# Claude Code
-.claude/*.local.json
-.serena
+# Agents
+settings.local.json
