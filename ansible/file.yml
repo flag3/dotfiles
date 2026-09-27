@@ -34,6 +34,8 @@
       dest: .config/aquaproj-aqua/aqua.yaml
     - src: .config/fish/config.fish
       dest: .config/fish/config.fish
+    - src: .config/fish/conf.d/tide.fish
+      dest: .config/fish/conf.d/tide.fish
     - src: .config/ghostty/config
       dest: .config/ghostty/config
     - src: .config/git/aliases.gitconfig
