@@ -1,34 +1,34 @@
 registries:
   - type: standard
-    ref: v4.575.0
+    ref: v4.578.0
 packages:
   - name: 1password/cli@v2.30.3
   - name: abice/go-enum@v0.9.5
-  - name: amacneil/dbmate@v2.36.0
-  - name: anthropics/claude-code@v2.1.301
-  - name: astral-sh/uv@0.13.1
+  - name: amacneil/dbmate@v2.37.0
+  - name: anthropics/claude-code@v2.1.310
+  - name: astral-sh/uv@0.13.5
   - name: authzed/zed@v1.2.1
-  - name: aws/aws-cli@2.38.1
+  - name: aws/aws-cli@2.38.5
   - name: aws/session-manager-plugin@1.2.896.0
-  - name: biomejs/biome@@biomejs/biome@2.5.15
-  - name: bufbuild/buf@v1.74.0
+  - name: biomejs/biome@@biomejs/biome@2.6.3
+  - name: bufbuild/buf@v1.75.0
   - name: BurntSushi/ripgrep@15.2.0
-  - name: cli/cli@v2.102.0
-  - name: cloudflare/cloudflared@2026.10.1
+  - name: cli/cli@v2.103.2
+  - name: cloudflare/cloudflared@2026.10.4
   - name: d-kuro/gwq@v0.1.2
   - name: dandavison/delta@0.20.1
-  - name: denoland/deno@v2.9.7
-  - name: duckdb/duckdb@v1.5.6
+  - name: denoland/deno@v2.9.8
+  - name: duckdb/duckdb@v2.0.0
   - name: eza-community/eza@0.23.5
-  - name: git-lfs/git-lfs@v3.8.0
+  - name: git-lfs/git-lfs@v3.8.1
   - name: gitleaks/gitleaks@v8.30.1
   - name: go-task/task@v3.54.0
-  - name: golang/go@go1.27.2
-  - name: golangci/golangci-lint@v2.14.0
-  - name: GoogleCloudPlatform/cloud-sql-proxy@v2.26.2
+  - name: golang/go@go1.27.3
+  - name: golangci/golangci-lint@v2.15.0
+  - name: GoogleCloudPlatform/cloud-sql-proxy@v2.26.3
   - name: gotestyourself/gotestsum@v1.13.0
-  - name: hashicorp/terraform@v1.16.6
-  - name: ip7z/7zip@26.04
+  - name: hashicorp/terraform@v1.17.0
+  - name: ip7z/7zip@26.05
   - name: jesseduffield/lazygit@v0.66.2
   - name: jgm/pandoc@3.12.1
   - name: jqlang/jq@jq-1.8.2
@@ -40,20 +40,20 @@ packages:
   - name: mikefarah/yq@v4.54.1
   - name: mvdan/gofumpt@v0.12.0
   - name: neovim/neovim@v0.12.6
-  - name: nodejs/node@v26.12.0
-  - name: openai/codex@rust-v0.163.0
-  - name: oven-sh/bun@bun-v1.4.3
+  - name: nodejs/node@v26.12.1
+  - name: openai/codex@rust-v0.164.0
+  - name: oven-sh/bun@bun-v1.4.4
   - name: pgplex/pgschema@v1.13.3
-  - name: pnpm/pnpm@v12.14.0
+  - name: pnpm/pnpm@v12.15.0
   - name: pre-commit/pre-commit@v4.7.0
   - name: pressly/goose@v3.29.0
   - name: rclone/rclone@v1.75.2
-  - name: rust-lang/rust-analyzer@2026-10-12
-  - name: rust-lang/rustup@1.29.1
+  - name: rust-lang/rust-analyzer@2026-10-26
+  - name: rust-lang/rustup@1.29.2
   - name: sharkdp/bat@v0.26.1
   - name: sharkdp/fd@v10.5.0
   - name: sqlc-dev/sqlc@v1.31.1
-  - name: theseus-rs/postgresql-binaries@18.6.0
+  - name: theseus-rs/postgresql-binaries@17.4.1
   - name: typst/typst@v0.15.1
   - name: uber-go/mock@v0.6.0
   - name: x-motemen/ghq@v1.11.2
