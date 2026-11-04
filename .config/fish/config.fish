@@ -97,7 +97,6 @@ set -l npm_bin_path $HOME/.npm/bin
 if test -d $npm_bin_path
     fish_add_path -g $npm_bin_path
 end
-set -gx NPM_PKG_GITHUB_PAT "op://2442cozdn6slbp7xxuqldkydjm/kp5feviv6zrc5zcrqxwzbk7ukq/token"
 
 # Rust
 set -l rust_include $HOME/.cargo/env.fish
