@@ -62,3 +62,4 @@
 	path = ~/.config/git/aliases.gitconfig
 	path = ~/.config/git/ghq.gitconfig
 	path = ~/.config/git/delta.gitconfig
+	path = ~/.gitconfig.private
