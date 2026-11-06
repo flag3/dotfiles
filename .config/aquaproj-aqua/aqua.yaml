@@ -28,6 +28,7 @@ packages:
   - name: GoogleCloudPlatform/cloud-sql-proxy@v2.27.0
   - name: gotestyourself/gotestsum@v1.13.0
   - name: hashicorp/terraform@v1.17.1
+  - name: herdrdev/herdr@v0.9.5
   - name: ip7z/7zip@26.05
   - name: jesseduffield/lazygit@v0.66.2
   - name: jgm/pandoc@3.13

@@ -13,6 +13,7 @@
     - .config/ghostty
     - .config/git
     - .config/gwq
+    - .config/herdr
     - .config/karabiner/assets
     - .config/nvim
     - .local/share
@@ -46,6 +47,8 @@
       dest: .config/git/ghq.gitconfig
     - src: .config/gwq/config.toml
       dest: .config/gwq/config.toml
+    - src: .config/herdr/config.toml
+      dest: .config/herdr/config.toml
     - src: .config/karabiner
       dest: .config/karabiner/assets/complex_modifications
     - src: .config/lazygit/config.yml
@@ -68,6 +71,8 @@
       dest: .npmrc
     - src: .scripts/ide
       dest: bin/ide
+    - src: .scripts/herdr-move-workspace
+      dest: bin/herdr-move-workspace
     - src: .ssh/config
       dest: .ssh/config
 
