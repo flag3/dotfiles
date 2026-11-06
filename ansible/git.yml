@@ -3,6 +3,7 @@
   git:
     repo: git@github.com:{{ item.repo }}.git
     dest: ~/{{ item.dest }}
+    track_submodules: true
   loop:
     - repo: flag3/skills
       dest: .claude/skills
