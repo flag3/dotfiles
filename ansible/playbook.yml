@@ -50,9 +50,3 @@
     - import_tasks: git.yml
       tags:
         - git
-    - import_tasks: claude.yml
-      tags:
-        - claude
-    - import_tasks: codex.yml
-      tags:
-        - codex

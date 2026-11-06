@@ -5,8 +5,6 @@
     mode: 0700
   loop:
     - .agents
-    - .claude
-    - .codex
     - .config/aquaproj-aqua
     - .config/fish/conf.d
     - .config/fish/functions
@@ -29,8 +27,6 @@
     force: true
     follow: false
   loop:
-    - src: .claude/settings.json
-      dest: .claude/settings.json
     - src: .config/aquaproj-aqua/aqua.yaml
       dest: .config/aquaproj-aqua/aqua.yaml
     - src: .config/fish/config.fish
@@ -85,10 +81,3 @@
     follow: false
   with_fileglob:
     - "{{ playbook_dir }}/../.config/fish/functions/*"
-
-- name: touch file
-  file:
-    state: touch
-    path: ~/.codex/config.toml
-    access_time: preserve
-    modification_time: preserve
