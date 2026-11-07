@@ -3,6 +3,7 @@ curl
 fish
 git
 imagemagick
+mise
 skkdic
 texlive-full
 tig

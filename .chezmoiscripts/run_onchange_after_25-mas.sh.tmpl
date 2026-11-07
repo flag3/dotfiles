@@ -1,7 +1,8 @@
 {{- if eq .chezmoi.os "darwin" -}}
 #!/bin/bash
 set -euo pipefail
-export PATH="$HOME/.local/share/aquaproj-aqua/bin:$PATH"
+export PATH="$HOME/.local/share/aquaproj-aqua/bin:/opt/homebrew/bin:$PATH"
+eval "$(cd "$HOME" && mise env -s bash)" # aqua-proxy looks up aqua (from mise) on PATH
 
 mas install \
   1388020431 `# DevCleaner for Xcode` \

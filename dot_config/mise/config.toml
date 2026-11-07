@@ -1,0 +1,8 @@
+# mise manages aqua itself and language runtimes; aqua.yaml manages the other CLIs.
+[tools]
+aqua = "2.66.1"
+bun = "1.4.4"
+deno = "2.9.8"
+go = "1.27.3"
+node = "26.13.0"
+pnpm = "12.17.0"

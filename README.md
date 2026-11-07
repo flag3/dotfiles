@@ -27,7 +27,8 @@ repositories in `.chezmoiexternal.toml` include private ones cloned over SSH.
 Supported: macOS, Debian / Ubuntu, Windows (PowerShell).
 
 `.chezmoiscripts/` installs packages (Homebrew + mas on macOS, apt on Linux,
-winget on Windows, aqua and npm everywhere), sets up fish / fisher / tide or
+winget on Windows; then mise for aqua and language runtimes, aqua for the other
+CLIs and npm everywhere), sets up fish / fisher / tide or
 the PowerShell profile, and applies macOS defaults. On Windows it also sets
 `XDG_CONFIG_HOME` so Neovim, lazygit and git read `~/.config` as on the other
 platforms. `run_onchange_` scripts re-run when their content (or the hashed

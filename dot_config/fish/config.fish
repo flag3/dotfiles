@@ -61,6 +61,11 @@ if type -q docker
     set -gx COMPOSE_DOCKER_CLI_BUILD 1
 end
 
+# mise: aqua itself and language runtimes (node, go, ...); must precede checks below
+if type -q mise
+    mise activate fish | source
+end
+
 # Go
 if type -q go
     set -gx GOPATH $HOME/.go

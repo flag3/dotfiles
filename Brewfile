@@ -1,5 +1,5 @@
 # Homebrew packages (macOS). Applied by .chezmoiscripts/run_onchange_after_10-homebrew.sh.tmpl
-brew "aqua"
+brew "mise"
 brew "fish"
 brew "git"
 brew "imagemagick"

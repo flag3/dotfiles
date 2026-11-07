@@ -2,7 +2,8 @@
 #!/bin/bash
 # npm-packages.txt hash: {{ include "npm-packages.txt" | sha256sum }}
 set -euo pipefail
-export PATH="$HOME/.local/share/aquaproj-aqua/bin:$PATH"
+export PATH="/opt/homebrew/bin:$PATH"
+eval "$(cd "$HOME" && mise env -s bash)"
 
 xargs npm install -g < {{ joinPath .chezmoi.sourceDir "npm-packages.txt" | quote }}
 {{- end }}

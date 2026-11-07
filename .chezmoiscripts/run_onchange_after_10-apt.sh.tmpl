@@ -3,6 +3,10 @@
 # apt-packages.txt hash: {{ include "apt-packages.txt" | sha256sum }}
 set -euo pipefail
 
+# mise comes from its own repository (https://mise.jdx.dev/installing-mise.html#apt)
+sudo apt-get update
+sudo DEBIAN_FRONTEND=noninteractive apt-get install -y extrepo
+sudo extrepo enable mise
 sudo apt-get update
 xargs -a {{ joinPath .chezmoi.sourceDir "apt-packages.txt" | quote }} sudo DEBIAN_FRONTEND=noninteractive apt-get install -y
 {{- end }}

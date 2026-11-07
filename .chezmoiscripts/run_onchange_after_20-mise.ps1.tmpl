@@ -1,4 +1,5 @@
 {{- if eq .chezmoi.os "windows" -}}
+# mise config hash: {{ include "dot_config/mise/config.toml" | sha256sum }}
 # aqua.yaml hash: {{ include "dot_config/aquaproj-aqua/aqua.yaml" | sha256sum }}
 $ErrorActionPreference = "Stop"
 
@@ -12,14 +13,31 @@ $userEnv = @{
 foreach ($name in $userEnv.Keys) {
     [Environment]::SetEnvironmentVariable($name, $userEnv[$name], "User")
 }
+# mise must read ~/.config/mise in this run too
+$env:XDG_CONFIG_HOME = $userEnv.XDG_CONFIG_HOME
 
+# mise shims (aqua, node, go, ...) and aqua proxies, ahead of the rest of PATH
 $userPath = [Environment]::GetEnvironmentVariable("Path", "User")
 $entries = @($userPath -split ";" | Where-Object { $_ })
-foreach ($dir in @((Join-Path $aquaRoot "bin"), (Join-Path $aquaRoot "bat"), (Join-Path $HOME ".npm"))) {
+$dirs = @(
+    (Join-Path $env:LOCALAPPDATA "mise\shims"),
+    (Join-Path $aquaRoot "bin"),
+    (Join-Path $aquaRoot "bat"),
+    (Join-Path $HOME ".npm")
+)
+foreach ($dir in $dirs) {
     if ($entries -notcontains $dir) { $entries = @($dir) + $entries }
 }
 [Environment]::SetEnvironmentVariable("Path", ($entries -join ";"), "User")
 $env:Path = ($entries -join ";") + ";" + [Environment]::GetEnvironmentVariable("Path", "Machine")
+
+Push-Location $HOME
+try {
+    mise install
+    if ($LASTEXITCODE -ne 0) { throw "mise install failed ($LASTEXITCODE)" }
+} finally {
+    Pop-Location
+}
 
 Push-Location (Join-Path $HOME ".config\aquaproj-aqua")
 try {
