@@ -2,16 +2,21 @@
 
 HOMEBREW_PREFIX="/opt/homebrew"
 BREW_BIN="$HOMEBREW_PREFIX/bin/brew"
-AQUA_BIN="$HOMEBREW_PREFIX/bin/aqua"
+MISE_BIN="$HOMEBREW_PREFIX/bin/mise"
+VENV="$HOME/.local/share/dotfiles-ansible"
 
 if [ ! -x $BREW_BIN ]; then
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
-if [ ! -x $AQUA_BIN ]; then
-  $BREW_BIN install aqua
+if [ ! -x $MISE_BIN ]; then
+  $BREW_BIN install mise
 fi
 
-$AQUA_BIN -c ../.config/aquaproj-aqua/aqua.yaml exec -- \
-  uvx --managed-python --with ansible --from ansible-core -- \
-  ansible-playbook playbook.yml "$@"
+if ! "$VENV/bin/python" -V >/dev/null 2>&1; then
+  MISE_GLOBAL_CONFIG_FILE=../.config/mise/config.toml $MISE_BIN exec python -- python -m venv --clear "$VENV"
+fi
+
+"$VENV/bin/pip" install -q -U ansible-core
+"$VENV/bin/ansible-galaxy" collection install -U community.general >/dev/null
+"$VENV/bin/ansible-playbook" playbook.yml "$@"

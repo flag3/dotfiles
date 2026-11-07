@@ -1,0 +1,14 @@
+[tools]
+aqua = "latest"
+bun = "latest"
+deno = "latest"
+ghq = "latest"
+go = "latest"
+node = "latest"
+pnpm = "latest"
+python = "latest"
+ruby = "latest"
+rust = "latest"
+
+[settings]
+idiomatic_version_file_enable_tools = ["node"]

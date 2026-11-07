@@ -1,0 +1,6 @@
+- name: install mise tools (aqua and language runtimes)
+  command: mise install
+  args:
+    chdir: ~/
+  register: result
+  changed_when: result.stderr_lines | length > 0

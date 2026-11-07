@@ -6,12 +6,12 @@
   homebrew:
     state: latest
     name:
-      - aqua
       - fish
       - git
       - imagemagick
       - latexindent
       - make
+      - mise
       - rgbds
       - tig
       - tmux

@@ -2,7 +2,7 @@
   connection: local
 
   environment:
-    PATH: "{{ lookup('ansible.builtin.env', 'HOME') }}/.local/share/aquaproj-aqua/bin:{{ lookup('ansible.builtin.env', 'PATH') }}"
+    PATH: "{{ lookup('ansible.builtin.env', 'HOME') }}/.local/share/mise/shims:{{ lookup('ansible.builtin.env', 'HOME') }}/.local/share/aquaproj-aqua/bin:{{ lookup('ansible.builtin.env', 'PATH') }}"
 
   tasks:
     - import_tasks: file.yml
@@ -26,6 +26,9 @@
     - import_tasks: fisher.yml
       tags:
         - fisher
+    - import_tasks: mise.yml
+      tags:
+        - mise
     - import_tasks: aquaproj-aqua.yml
       tags:
         - aqua

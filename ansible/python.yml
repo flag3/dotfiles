@@ -4,5 +4,5 @@
   register: venv_activate
 
 - name: setup venv
-  command: uv --managed-python venv ~/.venv
+  command: python -m venv ~/.venv
   when: not venv_activate.stat.exists

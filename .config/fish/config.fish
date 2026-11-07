@@ -86,6 +86,11 @@ if type -q docker
     set -gx COMPOSE_DOCKER_CLI_BUILD 1
 end
 
+# mise
+if type -q mise
+    command mise activate fish | source
+end
+
 # Go
 if type -q go
     set -gx GOPATH $HOME/.go
@@ -111,7 +116,6 @@ set -l python_venv_path $HOME/.venv
 if test -d $python_venv_path/bin
     set -gx VIRTUAL_ENV $python_venv_path
     fish_add_path -g $python_venv_path/bin
-    alias pip "uv pip"
 end
 
 # Aqua
