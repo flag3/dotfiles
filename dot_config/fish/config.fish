@@ -12,7 +12,6 @@ set -g theme_hostname always
 set -g fish_color_command blue
 
 # aliases
-alias ls "ls -p -G"
 alias la "ls -A"
 alias ll "ls -l"
 alias lla "ll -A"
@@ -39,40 +38,16 @@ if type -q bat
     alias less bat
 end
 
-# Homebrew
-set -l homebrew_prefix /opt/homebrew
-fish_add_path -g $homebrew_prefix/bin $homebrew_prefix/sbin
-
-# 1Password SSH agent
-set -gx SSH_AUTH_SOCK "$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
-
-# Android SDK
-set -gx ANDROID_HOME $HOME/Library/Android/sdk
-if test -d $ANDROID_HOME
-    fish_add_path -a $ANDROID_HOME/emulator $ANDROID_HOME/tools $ANDROID_HOME/platform-tools
+switch (uname)
+    case Darwin
+        source $root_path/config-mac.fish
+    case Linux
+        source $root_path/config-linux.fish
 end
 
 # React Native editor
 if type -q subl
     set -gx REACT_EDITOR subl
-end
-
-# Java
-set -l android_java_home /Applications/Android\ Studio.app/Contents/jbr/Contents/Home
-if test -x $android_java_home/bin/java
-    set -gx JAVA_HOME $android_java_home
-else if test -x /usr/libexec/java_home
-    set -l detected_java_home (/usr/libexec/java_home -v 17 2>/dev/null)
-    if test $status -eq 0; and test -n "$detected_java_home"
-        set -gx JAVA_HOME $detected_java_home
-    end
-end
-
-# Google Cloud SDK
-set -l google_cloud_sdk_bin_path $homebrew_prefix/share/google-cloud-sdk/bin
-if test -d $google_cloud_sdk_bin_path
-    set -gx CLOUDSDK_PYTHON (command -v python)
-    fish_add_path -g $google_cloud_sdk_bin_path
 end
 
 # fzf.fish
@@ -115,10 +90,8 @@ if test -d $python_venv_path/bin
 end
 
 # Aqua
-if type -q aqua
-    fish_add_path -g (aqua root-dir)/bin
-    set -gx AQUA_GLOBAL_CONFIG $HOME/.config/aquaproj-aqua/aqua.yaml
-end
+fish_add_path -g $HOME/.local/share/aquaproj-aqua/bin
+set -gx AQUA_GLOBAL_CONFIG $HOME/.config/aquaproj-aqua/aqua.yaml
 
 # Lean
 set -l lean_path $HOME/.elan

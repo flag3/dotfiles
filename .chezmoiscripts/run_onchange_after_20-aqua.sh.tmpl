@@ -4,6 +4,14 @@
 set -euo pipefail
 export PATH="$HOME/.local/share/aquaproj-aqua/bin:/opt/homebrew/bin:$PATH"
 
+if ! command -v aqua >/dev/null; then
+  installer="$(mktemp)"
+  curl -sSfL -o "$installer" https://raw.githubusercontent.com/aquaproj/aqua-installer/v4.1.1/aqua-installer
+  echo "c0acde4802a1edd8b8201fd4cc1f0e52700cd4feb875f9c9793381b5b0ca2065  $installer" | sha256sum -c -
+  bash "$installer"
+  rm -f "$installer"
+fi
+
 cd "$HOME/.config/aquaproj-aqua"
 aqua i -l
 

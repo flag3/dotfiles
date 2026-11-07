@@ -8,11 +8,17 @@ Templates, `private_` and `executable_` files are copied instead.
 ## Setup
 
 ```sh
-sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply --source ~/dotfiles flag3
+sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply --exclude=externals --source ~/dotfiles flag3
 ```
 
-`.chezmoiscripts/` installs packages (Homebrew, aqua, mas, npm), sets up fish /
-fisher / tide, and applies macOS defaults. `run_onchange_` scripts re-run when
+Then set up the 1Password SSH agent and run `chezmoi apply` once more: the
+repositories in `.chezmoiexternal.toml` include private ones cloned over SSH.
+
+Supported: macOS, Debian / Ubuntu.
+
+`.chezmoiscripts/` installs packages (Homebrew + mas on macOS, apt on Linux,
+aqua and npm on both), sets up fish / fisher / tide, and applies macOS
+defaults. `run_onchange_` scripts re-run when
 their content (or the hashed file, e.g. `Brewfile`) changes.
 
 ## Editing

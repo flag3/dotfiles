@@ -1,0 +1,12 @@
+build-essential
+curl
+fish
+git
+imagemagick
+skkdic
+texlive-full
+tig
+tmux
+unzip
+wget
+xdg-utils

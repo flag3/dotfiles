@@ -46,14 +46,15 @@
 	required = true
 	process = git-lfs filter-process
 
+[credential "https://github.com"]
+	helper =
+	helper = !gh auth git-credential
+
 [url "git@github.com:"]
-	insteadOf = https://github.com/
+	pushInsteadOf = https://github.com/
 
 [gpg]
 	format = ssh
-
-[gpg "ssh"]
-	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
 
 [commit]
 	gpgsign = true
@@ -62,4 +63,5 @@
 	path = ~/.config/git/aliases.gitconfig
 	path = ~/.config/git/ghq.gitconfig
 	path = ~/.config/git/delta.gitconfig
+	path = ~/.config/git/os.gitconfig
 	path = ~/.gitconfig.private

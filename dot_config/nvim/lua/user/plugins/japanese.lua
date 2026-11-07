@@ -1,9 +1,12 @@
 vim.fn["skkeleton#config"]({
-	globalDictionaries = {
+	globalDictionaries = vim.tbl_filter(function(path)
+		return vim.fn.filereadable(vim.fn.expand(path)) == 1
+	end, {
 		"~/Library/Application Support/AquaSKK/skk-jisyo.utf8",
 		"~/Library/Application Support/AquaSKK/SKK-JISYO.L",
+		"/usr/share/skk/SKK-JISYO.L",
 		"~/dotfiles/SKK-JISYO.latex.utf8",
-	},
+	}),
 	showCandidatesCount = 1,
 })
 

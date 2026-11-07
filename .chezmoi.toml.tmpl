@@ -1,2 +1,5 @@
 sourceDir = {{ .chezmoi.workingTree | quote }}
 mode = "symlink"
+
+[scriptEnv]
+    AQUA_GLOBAL_CONFIG = {{ joinPath .chezmoi.homeDir ".config/aquaproj-aqua/aqua.yaml" | quote }}
