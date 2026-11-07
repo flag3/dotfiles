@@ -44,6 +44,7 @@ packages:
   - name: nodejs/node@v26.13.0
   - name: openai/codex@rust-v0.166.0
   - name: oven-sh/bun@bun-v1.4.4
+  - name: peteretelej/tree@v1.3.0
   - name: pgplex/pgschema@v1.13.4
   - name: pnpm/pnpm@v12.17.0
   - name: pre-commit/pre-commit@v4.7.0
@@ -55,6 +56,7 @@ packages:
   - name: sharkdp/fd@v10.5.0
   - name: sqlc-dev/sqlc@v1.31.1
   - name: theseus-rs/postgresql-binaries@17.1.1
+  - name: tree-sitter/tree-sitter@v0.27.1
   - name: typst/typst@v0.15.1
   - name: uber-go/mock@v0.6.0
   - name: x-motemen/ghq@v1.12.0
