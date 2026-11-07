@@ -4,7 +4,7 @@ set -euo pipefail
 export PATH="$HOME/.local/share/aquaproj-aqua/bin:/opt/homebrew/bin:$PATH"
 eval "$(cd "$HOME" && mise env -s bash)" # aqua-proxy looks up aqua (from mise) on PATH
 
-[ -f "$HOME/.venv/bin/activate.fish" ] || uv --managed-python venv "$HOME/.venv"
+[ -f "$HOME/.venv/bin/activate.fish" ] || python -m venv "$HOME/.venv"
 
 if [ ! -x "$HOME/.elan/bin/elan" ]; then
   curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --no-modify-path

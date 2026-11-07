@@ -13,7 +13,4 @@ eval "$(mise env -s bash)"
 cd "$HOME/.config/aquaproj-aqua"
 aqua i -l
 
-if [ ! -x "$HOME/.cargo/bin/cargo" ]; then
-  rustup-init -y --no-modify-path --default-toolchain stable
-fi
 {{- end }}
