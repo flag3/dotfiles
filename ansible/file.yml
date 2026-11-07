@@ -51,6 +51,8 @@
       dest: Library/Application Support/lazygit/config.yml
     - src: .config/nvim/init.lua
       dest: .config/nvim/init.lua
+    - src: .config/nvim/after
+      dest: .config/nvim/after
     - src: .config/nvim/lua
       dest: .config/nvim/lua
     - src: .config/tmux
