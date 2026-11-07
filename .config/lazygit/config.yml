@@ -11,4 +11,8 @@ gui:
 git:
   autoFetch: false
   diffRenderers:
-    - command: delta --light --syntax-theme="Solarized (light)" --paging=never
+    - command: delta --light --paging=never --syntax-theme="Solarized (light)"
+      colorArg: always
+os:
+  # fish syntax: lazygit runs this through $SHELL
+  edit: 'if test -z "$NVIM"; nvim -- {{filename}}; else; nvim --server "$NVIM" --remote-send "<Cmd>lua User.lazygit.handoff()<CR>"; and nvim --server "$NVIM" --remote {{filename}}; end'
