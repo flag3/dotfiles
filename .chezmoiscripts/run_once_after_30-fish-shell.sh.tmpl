@@ -1,0 +1,13 @@
+{{- if ne .chezmoi.os "windows" -}}
+#!/bin/bash
+set -euo pipefail
+export PATH="/opt/homebrew/bin:$PATH"
+
+fish_path="$(command -v fish)" || { echo "fish not found, skipping" >&2; exit 0; }
+grep -qxF "$fish_path" /etc/shells || echo "$fish_path" | sudo tee -a /etc/shells >/dev/null
+[ "$(basename "$SHELL")" = fish ] || sudo chsh -s "$fish_path" "$USER"
+{{- if eq .chezmoi.os "darwin" }}
+
+mkdir -p "$HOME/Library/Mobile Documents/com~apple~CloudDocs/fish"
+{{- end }}
+{{- end }}

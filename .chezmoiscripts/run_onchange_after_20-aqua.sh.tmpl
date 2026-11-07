@@ -1,0 +1,13 @@
+{{- if ne .chezmoi.os "windows" -}}
+#!/bin/bash
+# aqua.yaml hash: {{ include "dot_config/aquaproj-aqua/aqua.yaml" | sha256sum }}
+set -euo pipefail
+export PATH="$HOME/.local/share/aquaproj-aqua/bin:/opt/homebrew/bin:$PATH"
+
+cd "$HOME/.config/aquaproj-aqua"
+aqua i -l
+
+if [ ! -x "$HOME/.cargo/bin/cargo" ]; then
+  rustup-init -y --no-modify-path --default-toolchain stable
+fi
+{{- end }}

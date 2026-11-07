@@ -1,0 +1,11 @@
+{{- if ne .chezmoi.os "windows" -}}
+#!/bin/bash
+set -euo pipefail
+export PATH="$HOME/.local/share/aquaproj-aqua/bin:$PATH"
+
+[ -f "$HOME/.venv/bin/activate.fish" ] || uv --managed-python venv "$HOME/.venv"
+
+if [ ! -x "$HOME/.elan/bin/elan" ]; then
+  curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --no-modify-path
+fi
+{{- end }}

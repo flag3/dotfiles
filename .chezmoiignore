@@ -1,0 +1,40 @@
+# Repository files that are not deployed to ~.
+README.md
+SKK-JISYO.latex.utf8
+Brewfile
+
+# Fish: written by fish / fisher at runtime
+.config/fish/fish_variables
+.config/fish/fish_variables*
+.config/fish/completions/
+.config/fish/conf.d/_tide_init.fish
+.config/fish/conf.d/z.fish
+.config/fish/conf.d/fzf.fish
+.config/fish/conf.d/nvm.fish
+.config/fish/conf.d/fish-ssh-agent.fish
+.config/fish/conf.d/fish_frozen_key_bindings.fish
+.config/fish/conf.d/fish_frozen_theme.fish
+.config/fish/functions/_*
+.config/fish/functions/__*
+.config/fish/functions/bass.fish
+.config/fish/functions/fisher.fish
+.config/fish/functions/fish_prompt.fish
+.config/fish/functions/fish_mode_prompt.fish
+.config/fish/functions/fzf_configure_bindings.fish
+.config/fish/functions/nvm.fish
+.config/fish/functions/z.fish
+.config/fish/functions/tide
+.config/fish/functions/tide.fish
+
+# Neovim
+.config/nvim/nvim-pack-lock.json
+
+# Lazygit
+.config/lazygit/state.yml
+
+.DS_Store
+
+{{- if ne .chezmoi.os "darwin" }}
+.config/karabiner
+.local/share/fish
+{{- end }}

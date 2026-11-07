@@ -1,0 +1,15 @@
+{{- if ne .chezmoi.os "windows" -}}
+#!/bin/bash
+# fish_plugins hash: {{ include "dot_config/fish/fish_plugins" | sha256sum }}
+set -euo pipefail
+export PATH="/opt/homebrew/bin:$PATH"
+
+fish <<'FISH'
+if not functions -q fisher
+    curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source
+end
+fisher update
+
+tide configure --auto --style=Classic --prompt_colors='True color' --classic_prompt_color=Lightest --show_time='24-hour format' --classic_prompt_separators=Angled --powerline_prompt_heads=Sharp --powerline_prompt_tails=Round --powerline_prompt_style='Two lines, character' --prompt_connection=Disconnected --powerline_right_prompt_frame=No --prompt_spacing=Sparse --icons='Few icons' --transient=Yes
+FISH
+{{- end }}
