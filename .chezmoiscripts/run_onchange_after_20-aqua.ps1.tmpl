@@ -1,0 +1,31 @@
+{{- if eq .chezmoi.os "windows" -}}
+# aqua.yaml hash: {{ include "dot_config/aquaproj-aqua/aqua.yaml" | sha256sum }}
+$ErrorActionPreference = "Stop"
+
+# Persist user environment so Neovim, lazygit and git read ~/.config like on macOS/Linux
+$aquaRoot = Join-Path $env:LOCALAPPDATA "aquaproj-aqua"
+$userEnv = @{
+    XDG_CONFIG_HOME    = Join-Path $HOME ".config"
+    AQUA_GLOBAL_CONFIG = $env:AQUA_GLOBAL_CONFIG
+    EDITOR             = "nvim"
+}
+foreach ($name in $userEnv.Keys) {
+    [Environment]::SetEnvironmentVariable($name, $userEnv[$name], "User")
+}
+
+$userPath = [Environment]::GetEnvironmentVariable("Path", "User")
+$entries = @($userPath -split ";" | Where-Object { $_ })
+foreach ($dir in @((Join-Path $aquaRoot "bin"), (Join-Path $aquaRoot "bat"), (Join-Path $HOME ".npm"))) {
+    if ($entries -notcontains $dir) { $entries = @($dir) + $entries }
+}
+[Environment]::SetEnvironmentVariable("Path", ($entries -join ";"), "User")
+$env:Path = ($entries -join ";") + ";" + [Environment]::GetEnvironmentVariable("Path", "Machine")
+
+Push-Location (Join-Path $HOME ".config\aquaproj-aqua")
+try {
+    aqua i -l
+    if ($LASTEXITCODE -ne 0) { throw "aqua i -l failed ($LASTEXITCODE)" }
+} finally {
+    Pop-Location
+}
+{{- end }}

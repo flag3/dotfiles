@@ -1,0 +1,10 @@
+{{- if eq .chezmoi.os "windows" -}}
+# npm-packages.txt hash: {{ include "npm-packages.txt" | sha256sum }}
+$ErrorActionPreference = "Stop"
+# chezmoi passes its own (stale) environment; pick up PATH set by earlier scripts
+$env:Path = [Environment]::GetEnvironmentVariable("Path", "User") + ";" + [Environment]::GetEnvironmentVariable("Path", "Machine")
+
+$packages = Get-Content {{ joinPath .chezmoi.sourceDir "npm-packages.txt" | quote }} | Where-Object { $_ }
+npm install -g @packages
+if ($LASTEXITCODE -ne 0) { throw "npm install failed ($LASTEXITCODE)" }
+{{- end }}

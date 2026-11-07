@@ -3,6 +3,8 @@ README.md
 SKK-JISYO.latex.utf8
 Brewfile
 apt-packages.txt
+npm-packages.txt
+winget.json
 
 # Fish: written by fish / fisher at runtime
 .config/fish/fish_variables
@@ -38,4 +40,15 @@ apt-packages.txt
 {{- if ne .chezmoi.os "darwin" }}
 .config/karabiner
 .local/share/fish
+{{- end }}
+
+{{- if eq .chezmoi.os "windows" }}
+.agents
+.config/fish
+.config/ghostty
+.config/herdr
+.config/tmux
+bin
+{{- else }}
+.config/powershell
 {{- end }}

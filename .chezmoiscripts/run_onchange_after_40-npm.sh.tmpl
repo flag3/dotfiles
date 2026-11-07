@@ -1,7 +1,8 @@
 {{- if ne .chezmoi.os "windows" -}}
 #!/bin/bash
+# npm-packages.txt hash: {{ include "npm-packages.txt" | sha256sum }}
 set -euo pipefail
 export PATH="$HOME/.local/share/aquaproj-aqua/bin:$PATH"
 
-npm install -g commitizen cz-git npm-check-updates oxfmt oxlint oxlint-tsgolint prettier
+xargs npm install -g < {{ joinPath .chezmoi.sourceDir "npm-packages.txt" | quote }}
 {{- end }}

@@ -1,0 +1,13 @@
+{{- if eq .chezmoi.os "windows" -}}
+$ErrorActionPreference = "Stop"
+
+# $PROFILE lives under Documents, which OneDrive may redirect, so resolve it at runtime
+$documents = [Environment]::GetFolderPath("MyDocuments")
+$profilePath = Join-Path $documents "PowerShell\Microsoft.PowerShell_profile.ps1"
+$line = '. (Join-Path $HOME ".config\powershell\user_profile.ps1")'
+
+New-Item -ItemType Directory -Force -Path (Split-Path $profilePath) | Out-Null
+if (-not (Test-Path $profilePath) -or -not (Select-String -Path $profilePath -SimpleMatch $line -Quiet)) {
+    Add-Content -Path $profilePath -Value $line
+}
+{{- end }}
