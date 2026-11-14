@@ -41,7 +41,6 @@ packages:
   - name: openai/codex@rust-v0.166.0
   - name: peteretelej/tree@v1.3.0
   - name: pgplex/pgschema@v1.13.4
-  - name: pre-commit/pre-commit@v4.7.0
   - name: pressly/goose@v3.29.0
   - name: rclone/rclone@v1.75.2
   - name: rust-lang/rust-analyzer@2026-11-02
