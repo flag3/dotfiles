@@ -1,5 +1,8 @@
-return {
+local M = {
 	icons = require("user.utils.icons"),
-	lazygit = require("user.utils.lazygit"),
+	lualine = require("user.utils.lualine"),
 	tabline = require("user.utils.tabline"),
+	editor = require("user.utils.editor"),
 }
+
+return M

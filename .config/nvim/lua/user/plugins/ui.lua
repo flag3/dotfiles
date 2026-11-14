@@ -1,49 +1,62 @@
+local icons = User.icons
+local lualine_utils = require("user.utils.lualine")
+local lazygit_utils = require("user.utils.lazygit")
+
 require("solarized-osaka").setup({
 	style = "vivid",
 	transparent = true,
 })
 vim.cmd.colorscheme("solarized-osaka")
 
-require("tiny-cmdline").setup({
-	position = { y = "20%" },
+require("mini.icons").setup()
+require("mini.icons").mock_nvim_web_devicons()
+
+-- Custom tabline setup
+require("user.utils.tabline").setup()
+vim.o.showtabline = 1
+vim.o.tabline = "%!v:lua.require('user.utils.tabline').render()"
+
+require("snacks").setup({
+	indent = { enabled = true },
+	scroll = { enabled = false },
+	picker = {
+		enabled = true,
+		sources = {
+			files = { hidden = true },
+			grep = { hidden = true },
+		},
+	},
+	notifier = { enabled = true },
+	statuscolumn = { enabled = true },
+	words = { enabled = true },
+	lazygit = {
+		enabled = true,
+		configure = true, -- auto-sets nvim-remote preset & syncs theme
+		config = {
+			-- Open files selected in lazygit in the pane it was launched from,
+			-- instead of the nvim-remote preset's new tab. See utils/lazygit.lua.
+			os = {
+				edit = lazygit_utils.edit_command(),
+				editAtLine = lazygit_utils.edit_command({ at_line = true }),
+			},
+		},
+		theme = {
+			activeBorderColor = { fg = "WarningMsg", bold = true },
+		},
+	},
 })
 
-require("mini.icons").setup()
-MiniIcons.mock_nvim_web_devicons()
-
-User.tabline.setup()
-
-local ROOT_MARKERS = { ".git", "lua", "package.json", "Makefile", "Cargo.toml", "go.mod", "pyproject.toml" }
-
-local function root_dir()
-	return vim.fs.root(0, ROOT_MARKERS) or vim.fn.getcwd()
-end
-
-local function root_name()
-	local root = root_dir()
-	if root == vim.fn.getcwd() then
-		return ""
-	end
-	return vim.fs.basename(root)
-end
-
-local function pretty_path()
-	local path = vim.api.nvim_buf_get_name(0)
-	if path == "" then
-		return ""
-	end
-	return vim.fs.relpath(root_dir(), path) or vim.fn.fnamemodify(path, ":~")
-end
-
-local function recording()
-	local reg = vim.fn.reg_recording()
-	return reg == "" and "" or "recording @" .. reg
-end
+require("tiny-cmdline").setup({
+	position = {
+		y = "20%",
+	},
+})
 
 require("lualine").setup({
 	options = {
 		theme = "auto",
 		globalstatus = true,
+		disabled_filetypes = { statusline = { "dashboard", "alpha", "ministarter", "snacks_dashboard" } },
 		refresh = {
 			events = {
 				"WinEnter",
@@ -56,6 +69,7 @@ require("lualine").setup({
 				"CursorMoved",
 				"CursorMovedI",
 				"ModeChanged",
+				-- Macro
 				"RecordingEnter",
 				"RecordingLeave",
 			},
@@ -64,41 +78,117 @@ require("lualine").setup({
 	sections = {
 		lualine_a = { "mode" },
 		lualine_b = { "branch" },
+
 		lualine_c = {
-			root_name,
+			lualine_utils.root_dir(),
 			{ "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
-			pretty_path,
+			{
+				lualine_utils.pretty_path({
+					length = 0,
+					relative = "cwd",
+					modified_hl = "MatchParen",
+					directory_hl = "",
+					filename_hl = "Bold",
+					modified_sign = "",
+					readonly_icon = " 󰌾 ",
+				}),
+			},
 		},
-		lualine_x = { recording, "diagnostics", "diff" },
-		lualine_y = { "progress" },
-		lualine_z = { "location" },
+		lualine_x = {
+			lualine_utils.macro_recording(),
+			{
+				"diagnostics",
+				symbols = {
+					error = icons.diagnostics.Error,
+					warn = icons.diagnostics.Warn,
+					info = icons.diagnostics.Info,
+					hint = icons.diagnostics.Hint,
+				},
+			},
+			{
+				"diff",
+				symbols = {
+					added = icons.git.added,
+					modified = icons.git.modified,
+					removed = icons.git.removed,
+				},
+				source = function()
+					local gitsigns = vim.b.gitsigns_status_dict
+					if gitsigns then
+						return {
+							added = gitsigns.added,
+							modified = gitsigns.changed,
+							removed = gitsigns.removed,
+						}
+					end
+				end,
+			},
+		},
+		lualine_y = {
+			{ "progress", separator = " ", padding = { left = 1, right = 1 } },
+		},
+		lualine_z = {
+			{ "location", padding = { left = 1, right = 1 } },
+		},
 	},
 })
 
 require("incline").setup({
-	hide = { cursorline = true },
+	window = {
+		margin = { vertical = 0, horizontal = 1 },
+		zindex = 10,
+	},
+	hide = {
+		cursorline = "smart",
+	},
 	render = function(props)
-		local name = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ":t")
-		if name == "" then
-			name = "[No Name]"
+		local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ":t")
+		if vim.bo[props.buf].modified then
+			filename = "[+] " .. filename
 		end
-		local icon, icon_hl = MiniIcons.get("file", name)
-		return {
-			{ icon, " ", group = icon_hl },
-			name,
-			vim.bo[props.buf].modified and " [+]" or "",
-		}
+
+		local icon, hl = MiniIcons.get("file", filename)
+		return { { icon, group = hl }, { " " }, { filename } }
 	end,
 })
 
-require("snacks").setup({
-	picker = { enabled = true },
-	lazygit = {
-		theme = { activeBorderColor = { fg = "WarningMsg", bold = true } },
+require("codediff").setup({
+	explorer = {
+		width = 50,
+		auto_open_on_cursor = true,
+		view_mode = "tree", -- "list" or "tree"
+		line_stats = {
+			enabled = true,
+		},
 	},
-	notifier = { enabled = true },
-	indent = { enabled = true },
-	statuscolumn = { enabled = true },
-	words = { enabled = true },
-	scroll = { enabled = false },
+	diff = {
+		compact = true,
+		compact_context_lines = 8,
+		compact_sync_folds = true, -- open/close folds in both panes together
+	},
+	keymaps = {
+		view = {},
+	},
+})
+
+vim.diagnostic.config({
+	underline = true,
+	update_in_insert = false,
+	virtual_text = {
+		spacing = 4,
+		source = "if_many",
+		prefix = "●",
+		format = function(diagnostic)
+			return string.format("%s (%s: %s)", diagnostic.message, diagnostic.source, diagnostic.code)
+		end,
+	},
+	severity_sort = true,
+	signs = {
+		text = {
+			[vim.diagnostic.severity.ERROR] = icons.diagnostics.Error,
+			[vim.diagnostic.severity.WARN] = icons.diagnostics.Warn,
+			[vim.diagnostic.severity.HINT] = icons.diagnostics.Hint,
+			[vim.diagnostic.severity.INFO] = icons.diagnostics.Info,
+		},
+	},
 })

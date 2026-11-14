@@ -1,9 +1,8 @@
-local lint = { lint = { emptyRules = "ignore" } }
-
+---@type vim.lsp.Config
 return {
 	settings = {
-		css = lint,
-		scss = lint,
-		less = lint,
+		css = { lint = { emptyRules = "ignore" } },
+		scss = { lint = { emptyRules = "ignore" } },
+		less = { lint = { emptyRules = "ignore" } },
 	},
 }

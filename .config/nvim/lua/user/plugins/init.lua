@@ -1,51 +1,49 @@
-vim.api.nvim_create_autocmd("PackChanged", {
-	callback = function(ev)
-		local name, kind = ev.data.spec.name, ev.data.kind
-		if name == "nvim-treesitter" and (kind == "install" or kind == "update") then
-			if not ev.data.active then
-				vim.cmd.packadd("nvim-treesitter")
-			end
-			vim.cmd("TSUpdate")
-		end
-	end,
-})
+local gh = function(x)
+	return "https://github.com/" .. x
+end
 
 vim.pack.add({
-	"https://github.com/craftzdog/solarized-osaka.nvim",
-	"https://github.com/folke/snacks.nvim",
-	"https://github.com/nvim-mini/mini.icons",
-	"https://github.com/b0o/incline.nvim",
-	"https://github.com/nvim-lualine/lualine.nvim",
-	"https://github.com/rachartier/tiny-cmdline.nvim",
-	"https://github.com/stevearc/oil.nvim",
-	{ src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
-	"https://github.com/folke/todo-comments.nvim",
-	"https://github.com/brenoprata10/nvim-highlight-colors",
-	"https://github.com/mason-org/mason.nvim",
-	"https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim",
-	"https://github.com/neovim/nvim-lspconfig",
-	"https://github.com/b0o/SchemaStore.nvim",
-	{ src = "https://github.com/saghen/blink.cmp", version = vim.version.range("^1") },
-	"https://github.com/nvim-mini/mini.pairs",
-	"https://github.com/stevearc/conform.nvim",
-	"https://github.com/lewis6991/gitsigns.nvim",
-	{ src = "https://github.com/craftzdog/mini.diff", version = "feat/grouping" },
-	"https://github.com/esmuellert/codediff.nvim",
-	"https://github.com/linrongbin16/gitlinker.nvim",
-	"https://github.com/zbirenbaum/copilot.lua",
-	"https://github.com/vim-denops/denops.vim",
-	"https://github.com/vim-skk/skkeleton",
-	"https://github.com/delphinus/skkeleton_indicator.nvim",
+	-- UI
+	{ src = gh("craftzdog/solarized-osaka.nvim") },
+	{ src = gh("nvim-mini/mini.icons") },
+	{ src = gh("folke/snacks.nvim") },
+	{ src = gh("folke/trouble.nvim") },
+	{ src = gh("nvim-lualine/lualine.nvim") },
+	{ src = gh("b0o/incline.nvim") },
+	{ src = gh("esmuellert/codediff.nvim") },
+	{ src = gh("rachartier/tiny-cmdline.nvim") },
+	-- Editor
+	{ src = gh("stevearc/conform.nvim") },
+	{ src = gh("nvim-treesitter/nvim-treesitter") },
+	{ src = gh("mks-h/treesitter-autoinstall.nvim") },
+	{ src = gh("nvim-mini/mini.pairs") },
+	{ src = gh("craftzdog/mini.diff"), version = "feat/grouping" },
+	{ src = gh("saghen/blink.cmp"), version = vim.version.range("^1") },
+	{ src = gh("folke/todo-comments.nvim") },
+	{ src = gh("lewis6991/gitsigns.nvim") },
+	{ src = gh("linrongbin16/gitlinker.nvim") },
+	{ src = gh("brenoprata10/nvim-highlight-colors") },
+	-- LSP
+	{ src = gh("neovim/nvim-lspconfig") },
+	{ src = gh("mason-org/mason.nvim") },
+	{ src = gh("WhoIsSethDaniel/mason-tool-installer.nvim") },
+	-- Util
+	{ src = gh("stevearc/oil.nvim") },
+	{ src = gh("zbirenbaum/copilot.lua") },
+	{ src = gh("b0o/SchemaStore.nvim") },
+	{ src = gh("vim-denops/denops.vim") },
+	{ src = gh("vim-skk/skkeleton") },
+	{ src = gh("delphinus/skkeleton_indicator.nvim") },
 })
 
-require("user.plugins.ui")
-require("user.plugins.navigation")
-require("user.plugins.syntax")
-require("user.plugins.lsp")
-require("user.plugins.completion")
-require("user.plugins.formatting")
-require("user.plugins.git")
-require("user.plugins.ai")
-require("user.plugins.japanese")
+if #vim.api.nvim_get_runtime_file("lua/user/plugins/local.lua", false) > 0 then
+	require("user.plugins.local")
+end
 
+require("user.plugins.ui")
+require("user.plugins.treesitter")
+require("user.plugins.editor")
+require("user.plugins.lsp")
+require("user.plugins.util")
+require("user.plugins.japanese")
 require("user.plugins.keymaps")

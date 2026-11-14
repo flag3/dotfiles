@@ -47,6 +47,9 @@ Pods/
 # Fish local config
 .config/fish/config-local.fish
 
+# Neovim local plugins
+.config/nvim/lua/user/plugins/local.lua
+
 # Tmux
 .config/tmux/plugins
 

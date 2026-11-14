@@ -1,16 +1,22 @@
 require("mason").setup()
 require("mason-tool-installer").setup({
 	ensure_installed = {
-		-- servers
+		"tree-sitter-cli",
 		"lua-language-server",
-		"vtsls",
+		"prettier",
+		"prettierd",
+		"selene",
+		"shellcheck",
+		"shfmt",
+		"stylua",
 		"eslint-lsp",
 		"oxlint",
+		"oxfmt",
 		"tailwindcss-language-server",
-		"css-lsp",
-		"rust-analyzer",
+		"vtsls",
 		"copilot-language-server",
-		-- servers (9.2)
+		"rust-analyzer",
+		"css-lsp",
 		"pyright",
 		"ruff",
 		"gopls",
@@ -29,13 +35,6 @@ require("mason-tool-installer").setup({
 		"dockerfile-language-server",
 		"docker-compose-language-service",
 		"biome",
-		-- formatters
-		"prettier",
-		"prettierd",
-		"oxfmt",
-		"stylua",
-		"shfmt",
-		-- formatters (9.2)
 		"gofumpt",
 		"goimports",
 		"latexindent",
@@ -44,16 +43,27 @@ require("mason-tool-installer").setup({
 	run_on_start = true,
 })
 
-vim.lsp.config("*", {
-	capabilities = {
-		workspace = {
-			fileOperations = { didRename = true, willRename = true },
+local capabilities = {
+	workspace = {
+		fileOperations = {
+			didRename = true,
+			willRename = true,
 		},
 	},
+}
+vim.lsp.config("*", {
+	capabilities = require("blink.cmp").get_lsp_capabilities(capabilities),
 })
 
-vim.lsp.enable({ "eslint", "oxlint", "lua_ls", "cssls", "vtsls", "tailwindcss", "rust_analyzer" })
 vim.lsp.enable({
+	"eslint",
+	"oxlint",
+	"lua_ls",
+	"cssls",
+	"vtsls",
+	"tailwindcss",
+	"glsl_analyzer",
+	"rust_analyzer",
 	"pyright",
 	"ruff",
 	"gopls",
@@ -72,20 +82,4 @@ vim.lsp.enable({
 	"dockerls",
 	"docker_compose_language_service",
 	"biome",
-})
-
-local diag = User.icons.diagnostics
-vim.diagnostic.config({
-	underline = true,
-	update_in_insert = false,
-	severity_sort = true,
-	virtual_text = { prefix = "●", source = "if_many" },
-	signs = {
-		text = {
-			[vim.diagnostic.severity.ERROR] = diag.Error,
-			[vim.diagnostic.severity.WARN] = diag.Warn,
-			[vim.diagnostic.severity.INFO] = diag.Info,
-			[vim.diagnostic.severity.HINT] = diag.Hint,
-		},
-	},
 })

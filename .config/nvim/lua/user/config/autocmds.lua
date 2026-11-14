@@ -1,22 +1,37 @@
-local group = vim.api.nvim_create_augroup("user", { clear = true })
+-- Basic autocommands
+local augroup = vim.api.nvim_create_augroup("UserConfig", {})
 
-vim.api.nvim_create_autocmd("TextYankPost", {
-	group = group,
-	callback = function()
-		vim.hl.on_yank()
-	end,
+-- Turn off paste mode when leaving insert
+vim.api.nvim_create_autocmd("InsertLeave", {
+	group = augroup,
+	pattern = "*",
+	command = "set nopaste",
 })
 
-vim.api.nvim_create_autocmd({ "WinEnter", "BufWinEnter" }, {
-	group = group,
-	callback = function()
-		vim.wo.cursorline = true
-	end,
+-- Highlight the current line on only the active buffer
+local cursorline_group = vim.api.nvim_create_augroup("CursorLine", { clear = true })
+vim.api.nvim_create_autocmd({ "VimEnter", "WinEnter", "BufWinEnter" }, {
+	group = cursorline_group,
+	pattern = "*",
+	command = "setlocal cursorline",
 })
-
 vim.api.nvim_create_autocmd("WinLeave", {
-	group = group,
+	group = cursorline_group,
+	pattern = "*",
+	command = "setlocal nocursorline",
+})
+
+-- Highlight yanked text
+vim.api.nvim_create_autocmd("TextYankPost", {
+	group = augroup,
 	callback = function()
-		vim.wo.cursorline = false
+		vim.highlight.on_yank()
 	end,
+})
+
+-- Custom filetypes
+vim.filetype.add({
+	extension = {
+		mjml = "html",
+	},
 })
