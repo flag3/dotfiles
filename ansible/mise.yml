@@ -1,6 +1,6 @@
-- name: install mise tools (aqua and language runtimes)
+- name: install mise tools
   command: mise install
   args:
     chdir: ~/
   register: result
-  changed_when: result.stderr_lines | length > 0
+  changed_when: result.stderr is search('installed [1-9]')
