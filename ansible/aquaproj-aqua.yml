@@ -1,3 +1,9 @@
+- name: generate aqua settings
+  copy:
+    dest: ~/.config/aquaproj-aqua/config.yaml
+    content: |
+      global_config: {{ ansible_facts["user_dir"] }}/.config/aquaproj-aqua/aqua.yaml
+
 - name: link aqua packages
   command: aqua i -l
   args:

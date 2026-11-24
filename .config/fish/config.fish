@@ -121,7 +121,6 @@ end
 # Aqua
 if type -q aqua
     fish_add_path -g (aqua root-dir)/bin
-    set -gx AQUA_GLOBAL_CONFIG $HOME/.config/aquaproj-aqua/aqua.yaml
 end
 
 # Lean
