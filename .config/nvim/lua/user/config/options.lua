@@ -39,6 +39,7 @@ vim.opt.undodir = vim.fn.expand("~/.cache/nvim/undodir") -- Undo directory
 vim.opt.updatetime = 300 -- Faster completion
 vim.opt.timeoutlen = 500 -- Key timeout duration
 vim.opt.ttimeoutlen = 0 -- Key code timeout
+vim.opt.exrc = true -- Load a trusted .nvim.lua from the current directory
 
 -- Behavior settings
 vim.opt.iskeyword:append("-") -- Treat dash as part of word

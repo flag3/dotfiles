@@ -85,7 +85,7 @@ map({
 		mode = "i",
 	},
 	{
-		"<c-j>",
+		"<c-k>",
 		function()
 			vim.diagnostic.jump({ count = 1, float = true })
 		end,
