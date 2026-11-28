@@ -43,6 +43,8 @@ require("mason-tool-installer").setup({
 	run_on_start = true,
 })
 
+vim.g.lean_config = { mappings = true }
+
 local capabilities = {
 	workspace = {
 		fileOperations = {

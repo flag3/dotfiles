@@ -27,6 +27,7 @@ vim.pack.add({
 	{ src = gh("neovim/nvim-lspconfig") },
 	{ src = gh("mason-org/mason.nvim") },
 	{ src = gh("WhoIsSethDaniel/mason-tool-installer.nvim") },
+	{ src = gh("Julian/lean.nvim") },
 	-- Util
 	{ src = gh("stevearc/oil.nvim") },
 	{ src = gh("zbirenbaum/copilot.lua") },
