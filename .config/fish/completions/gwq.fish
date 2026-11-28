@@ -1,0 +1,1 @@
+gwq completion fish | source

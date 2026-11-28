@@ -6,6 +6,7 @@
   loop:
     - .agents
     - .config/aquaproj-aqua
+    - .config/fish/completions
     - .config/fish/conf.d
     - .config/fish/functions
     - .config/ghostty
@@ -77,12 +78,13 @@
     - src: .ssh/config
       dest: .ssh/config
 
-- name: link fish functions
+- name: link fish completions and functions
   file:
     state: link
     src: "{{ item }}"
-    dest: ~/.config/fish/functions/{{ item | basename }}
+    dest: ~/.config/fish/{{ item | dirname | basename }}/{{ item | basename }}
     force: true
     follow: false
   with_fileglob:
+    - "{{ playbook_dir }}/../.config/fish/completions/*"
     - "{{ playbook_dir }}/../.config/fish/functions/*"
